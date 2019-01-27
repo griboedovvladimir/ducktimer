@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class RegistrationPage extends Component {
+class Registration extends Component {
     render() {
         return <div>Registration</div>
     }
 }
 
-export default RegistrationPage;
+export default Registration;
