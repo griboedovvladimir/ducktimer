@@ -1,0 +1,44 @@
+.main {
+  width: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+;
+
+.paper {
+  width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  p{
+    margin-top: 10px;
+  }
+}
+
+;
+
+.avatar {
+  margin: 10px;
+  background-color: gray;
+}
+
+;
+
+.submit {
+  margin-top: 10px;
+}
+
+input {
+  border-bottom: 1px solid lightgray !important;
+}
+
+img {
+  height: 80px;
+  margin: 10px;
+  opacity: 0.9;
+}

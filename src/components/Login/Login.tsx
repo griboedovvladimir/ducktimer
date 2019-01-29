@@ -7,84 +7,71 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import './Login.scss'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/purple';
 
-const styles = theme => ({
-    main: {
-        width: 'auto',
-        display: 'block', // Fix IE 11 issue.
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
-        [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-            width: 400,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
+const theme = createMuiTheme({
+    palette: {
+        primary: { main: red[900] }, // Purple and green play nicely together.
+        secondary: { main: '#cb0800' }, // This is just green.A700 as hex.
     },
-    paper: {
-        marginTop: theme.spacing.unit * 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-    },
-    avatar: {
-        margin: theme.spacing.unit,
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing.unit,
-    },
-    submit: {
-        marginTop: theme.spacing.unit * 3,
+    typography: {
+        // Use the system font instead of the default Roboto font.
+        fontFamily: [
+            'ProximaNova-Regular'
+        ].join(','),
     },
 });
 
 class Login extends Component {
     render() {
         return (
-            <main className={main}>
+            <MuiThemeProvider theme={theme}>
+            <main className='main'>
                 <CssBaseline />
-                <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
+                <Paper className='paper'>
+
+<img src="./img/logo.svg"/>
+
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <form className={classes.form}>
+                    <form className='form' color="secondary">
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input id="email" name="email" autoComplete="email" autoFocus />
+                            <Input disableUnderline={true} id="email" name="email" autoComplete="email" autoFocus />
                         </FormControl>
-                        <FormControl margin="normal" required fullWidth>
+                        <FormControl margin="normal" required fullWidth >
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input name="password" type="password" id="password" autoComplete="current-password" />
+                            <Input  disableUnderline={true} name="password" type="password" id="password" autoComplete="current-password" />
                         </FormControl>
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={<Checkbox value="remember" color="secondary" />}
                             label="Remember me"
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
-                            className={classes.submit}
+                            color="secondary"
+                            className='submit'
                         >
                             Sign in
                         </Button>
+                        <Typography component="p" variant="subtitle2">
+                            If you are unable to authorize, you may need to <a href="">register</a>
+                        </Typography>
                     </form>
                 </Paper>
             </main>
+            </MuiThemeProvider>
         )
     }
 }
 
 
-export default withStyles(styles)(Login);
+export default Login;
 

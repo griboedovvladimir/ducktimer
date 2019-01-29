@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import TopMenu from '../TopMenu/TopMenu';
 
 class Main extends Component {
     render() {
-        return (<div>Main page
-
-        </div>)
+        return (
+            <>
+                <button id="logout" className="icon"></button>
+                <TopMenu/>
+            </>
+        )
     }
 }
 
