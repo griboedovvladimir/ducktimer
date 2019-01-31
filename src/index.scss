@@ -35,6 +35,20 @@ code {
   font-style: normal;
   font-weight: normal;
 }
+
+/* variables */
+
+.unselected{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  box-shadow: none;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
 a{
   color:gray;
 }
@@ -99,97 +113,13 @@ body {
   background: #fff;
 }
 
-/*////////////login & registrations pages////////////*/
-#formWrapper, #registrationForm {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 250px;
-  padding-top: 15vh;
-  font-family: 'ProximaNova-Bold';
-}
-
-#loginForm button, #registrationForm button {
-  height: 40px;
-  border-radius: 5px;
-  border: 2px solid black;
-  margin: 10px 0 10px 0;
-  background-color: transparent;
-  font-family: 'ProximaNova-Bold';
-  letter-spacing: .1em;
-  outline: none;
-}
-
-#loginForm label, #registrationForm label {
-  margin: 5px 0 5px 0;
-}
-
-#registrationForm input {
-  height: 25px;
-  border-radius: 5px;
-  box-shadow: none;
-  border: 2px solid black;
-  padding: 3px;
-  outline: none;
-  width: 95%;
-}
-
-#loginForm input {
-  height: 25px;
-  border-radius: 5px;
-  box-shadow: none;
-  border: 2px solid black;
-  padding: 3px;
-  outline: none;
-  width: 95%;
-}
-
-#rememberme {
-  width: 20px;
-  background-color: transparent;
-  border: 1px solid black;
-  display: none;
-}
-
-.chekboxRemember {
-  display: flex;
-
-}
-
-.checkbox-custom {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
-  border-radius: 3px;
-  margin-right: 5px;
-}
-
-.checkbox-custom,
-.chekboxRemember label {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.checkbox:checked + .checkbox-custom::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  bottom: 2px;
-  left: 2px;
-  background: #413548;
-  border-radius: 2px;
-}
-
 /*//////////////////main page//////////////*/
 
 #time {
   display: inline-block;
   font-size: 50px;
   margin: auto 5px;
+  font-family: 'ProximaNova-Bold';
 }
 
 #timeicon {
@@ -221,9 +151,6 @@ h1 {
   grid-template-columns: auto 80px;
 }
 
-#logout {
-
-}
 
 @media screen and (max-width: 400px) {
   #logout {
@@ -576,28 +503,19 @@ dt{
 .icon {
   font-family: 'icon';
   font-size: 70px;
-  box-shadow: none;
-  border: none;
-  background: none;
-  outline: none;
+@extend .unselected
 }
 
 .icon2 {
   font-family: 'icon';
   font-size: 50px;
-  box-shadow: none;
-  border: none;
-  background: none;
-  outline: none;
+  @extend .unselected
 }
 
 .icon3 {
   font-family: 'icon';
   font-size: 40px;
-  box-shadow: none;
-  border: none;
-  background: none;
-  outline: none;
+  @extend .unselected
 }
 
 .filmbutton {
@@ -697,6 +615,8 @@ dt{
   color: red;
   font-family: 'icon';
   font-size: 40px;
+  @extend .unselected;
+  cursor:default;
 }
 
 .checkbox-label .off {
@@ -710,6 +630,8 @@ dt{
   opacity: 1;
   color: black;
   font-size: 40px;
+  @extend .unselected;
+  cursor:default;
 }
 
 .checkbox-label:before {
