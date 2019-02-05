@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import TopMenu from '../TopMenu/TopMenu';
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
-import RightMenu from '../RightMenu/RightMenu';
+import ThemeSwitcher from '../ThemeSwitcher';
+import RightMenu from '../RightMenu';
+import Timer from '../Timer';
 
 class Main extends Component {
     public date = new Date();
     public state: any = {
-        clock: this.date.toLocaleTimeString('en-GB')
+        clock: this.date.toLocaleTimeString( 'en-GB' )
     };
 
     constructor( props: any ) {
@@ -29,13 +30,16 @@ class Main extends Component {
         return (
             <>
                 <ThemeSwitcher/>
-                <div id="clock">
-                    <span id="timeicon" className="icon2"> </span>
-                    <div id="time">{this.state.clock}</div>
+                <div className="row1">
+                    <div id="clock">
+                        <span id="timeicon" className="icon2"> </span>
+                        <div id="time">{this.state.clock}</div>
+                    </div>
+                    <button onClick={this.onLogOut} className="logout icon"></button>
                 </div>
-                <button onClick={this.onLogOut} id="logout" className="icon"></button>
                 <TopMenu/>
                 <RightMenu/>
+                <Timer/>
             </>
         )
     }

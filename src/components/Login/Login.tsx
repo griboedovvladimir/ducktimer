@@ -28,8 +28,31 @@ const theme = createMuiTheme( {
     },
 } );
 
-class Login extends Component {
-    render() {
+class Login extends Component <{}> {
+    public signIn = {
+        email: '',
+        password: '',
+        remember: false,
+    };
+
+    public onChangeEmailField = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
+        this.signIn.email = event.target.value;
+    };
+
+    public onChangePasswordField = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
+        this.signIn.password = event.target.value;
+    };
+
+    public onChangeCheckbox = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
+        this.signIn.remember = event.target.checked;
+    };
+
+    public onSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
+        event.preventDefault();
+        console.log( this.signIn );
+    };
+
+    public render(): React.ReactNode {
         return (
             <MuiThemeProvider theme={theme}>
                 <main className='main'>
@@ -41,18 +64,21 @@ class Login extends Component {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <form className='form' color="secondary">
+                        <form onSubmit={this.onSubmit} className='form' color="secondary">
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input disableUnderline={true} id="email" name="email" autoComplete="email" autoFocus/>
+                                <Input onChange={this.onChangeEmailField} disableUnderline={true} id="email"
+                                       name="email" autoComplete="email" autoFocus/>
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input disableUnderline={true} name="password" type="password" id="password"
+                                <Input onChange={this.onChangePasswordField} disableUnderline={true} name="password"
+                                       type="password" id="password"
                                        autoComplete="current-password"/>
                             </FormControl>
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="secondary"/>}
+                                control={<Checkbox onChange={this.onChangeCheckbox} value="remember"
+                                                   color="secondary"/>}
                                 label="Remember me"
                             />
                             <Button
