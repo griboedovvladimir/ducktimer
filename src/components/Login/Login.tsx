@@ -9,24 +9,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './Login.scss'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/purple';
 import { NavLink } from 'react-router-dom';
 import { ROUTE_CONSTANTS } from '../../CONSTANTS';
-
-const theme = createMuiTheme( {
-    palette: {
-        primary: {main: red[ 900 ]}, // Purple and green play nicely together.
-        secondary: {main: '#cb0800'}, // This is just green.A700 as hex.
-    },
-    typography: {
-        // Use the system font instead of the default Roboto font.
-        useNextVariants: true,
-        fontFamily: [
-            'ProximaNova-Regular'
-        ].join( ',' ),
-    },
-} );
+import { API_CONSTANTS } from '../../CONSTANTS';
+import { restService } from '../../shared/services/rest.service';
 
 class Login extends Component <{}> {
     public signIn = {
@@ -35,26 +21,28 @@ class Login extends Component <{}> {
         remember: false,
     };
 
-    public onChangeEmailField = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
-        this.signIn.email = event.target.value;
-    };
-
-    public onChangePasswordField = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
-        this.signIn.password = event.target.value;
-    };
-
-    public onChangeCheckbox = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
-        this.signIn.remember = event.target.checked;
+    public onChangeSignIn = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
+        switch ( event.target.id ) {
+            case 'email':
+                this.signIn.email = event.target.value;
+                break;
+            case  'password':
+                this.signIn.password = event.target.value;
+                break;
+            case 'remember':
+                this.signIn.remember = event.target.checked;
+                break;
+        }
     };
 
     public onSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
         event.preventDefault();
         console.log( this.signIn );
+        restService.post(API_CONSTANTS.LOGIN, {}).then(console.log)
     };
 
     public render(): React.ReactNode {
         return (
-            <MuiThemeProvider theme={theme}>
                 <main className='main'>
                     <CssBaseline/>
                     <Paper className='paper'>
@@ -67,17 +55,17 @@ class Login extends Component <{}> {
                         <form onSubmit={this.onSubmit} className='form' color="secondary">
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input onChange={this.onChangeEmailField} disableUnderline={true} id="email"
+                                <Input onChange={this.onChangeSignIn} disableUnderline={true} id="email"
                                        name="email" autoComplete="email" autoFocus/>
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input onChange={this.onChangePasswordField} disableUnderline={true} name="password"
+                                <Input onChange={this.onChangeSignIn} disableUnderline={true} name="password"
                                        type="password" id="password"
                                        autoComplete="current-password"/>
                             </FormControl>
                             <FormControlLabel
-                                control={<Checkbox onChange={this.onChangeCheckbox} value="remember"
+                                control={<Checkbox onChange={this.onChangeSignIn} value="remember" id="remember"
                                                    color="secondary"/>}
                                 label="Remember me"
                             />
@@ -97,7 +85,6 @@ class Login extends Component <{}> {
                         </form>
                     </Paper>
                 </main>
-            </MuiThemeProvider>
         )
     }
 }

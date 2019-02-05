@@ -4,3 +4,7 @@ export enum ROUTE_CONSTANTS {
     MAIN_PAGE = '/main',
     ROOT = '/'
 }
+
+export enum API_CONSTANTS {
+    LOGIN = 'backend/login.php',
+}
