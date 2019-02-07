@@ -3,6 +3,8 @@ import TopMenu from '../TopMenu/TopMenu';
 import ThemeSwitcher from '../ThemeSwitcher';
 import RightMenu from '../RightMenu';
 import Timer from '../Timer';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actons';
 
 class Main extends Component {
     public date = new Date();
@@ -15,6 +17,10 @@ class Main extends Component {
         setInterval( () => {
             this.startClock()
         }, 1000 );
+    }
+
+    public componentDidMount(){
+        console.log(this.props);
     }
 
     public onLogOut = () => {
@@ -35,7 +41,7 @@ class Main extends Component {
                         <span id="timeicon" className="icon2"> </span>
                         <div id="time">{this.state.clock}</div>
                     </div>
-                    <button onClick={this.onLogOut} className="logout icon"></button>
+                    <div className="logout"><button className="icon" onClick={this.onLogOut}></button></div>
                 </div>
                 <TopMenu/>
                 <RightMenu/>
@@ -45,4 +51,6 @@ class Main extends Component {
     }
 }
 
-export default Main;
+const mapStateToProps = (state: any) => state;
+export default connect(mapStateToProps, {...actions})( Main);
+

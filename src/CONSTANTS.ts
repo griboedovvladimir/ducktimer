@@ -8,3 +8,7 @@ export enum ROUTE_CONSTANTS {
 export enum API_CONSTANTS {
     LOGIN = 'backend/login.php',
 }
+
+export enum STORAGE_CONSTANTS {
+    SET_TOKEN = 'SET_TOKEN'
+}

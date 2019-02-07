@@ -13,8 +13,11 @@ import { NavLink } from 'react-router-dom';
 import { ROUTE_CONSTANTS } from '../../CONSTANTS';
 import { API_CONSTANTS } from '../../CONSTANTS';
 import { restService } from '../../shared/services/rest.service';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actons';
+import { withRouter } from 'react-router-dom';
 
-class Login extends Component <{}> {
+class Login extends Component <any> {
     public signIn = {
         email: '',
         password: '',
@@ -38,57 +41,63 @@ class Login extends Component <{}> {
     public onSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
         event.preventDefault();
         console.log( this.signIn );
-        restService.post(API_CONSTANTS.LOGIN, {}).then(console.log)
+        restService.post( API_CONSTANTS.LOGIN, {} ).then( response => {
+            response.text().then( token => {
+                this.props.authorize( {authorize: token} );
+                this.props.history.push( '/main' );
+            } );
+        } );
     };
 
     public render(): React.ReactNode {
         return (
-                <main className='main'>
-                    <CssBaseline/>
-                    <Paper className='paper'>
+            <main className='main'>
+                <CssBaseline/>
+                <Paper className='paper'>
 
-                        <img src="./img/logo.svg"/>
+                    <img src="./img/logo.svg"/>
 
-                        <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <form onSubmit={this.onSubmit} className='form' color="secondary">
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="email">Email Address</InputLabel>
+                            <Input onChange={this.onChangeSignIn} disableUnderline={true} id="email"
+                                   name="email" autoComplete="email" autoFocus/>
+                        </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <Input onChange={this.onChangeSignIn} disableUnderline={true} name="password"
+                                   type="password" id="password"
+                                   autoComplete="current-password"/>
+                        </FormControl>
+                        <FormControlLabel
+                            control={<Checkbox onChange={this.onChangeSignIn} value="remember" id="remember"
+                                               color="secondary"/>}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className='submit'
+                        >
                             Sign in
+                        </Button>
+                        <Typography component="p" variant="subtitle2">
+                            If you are unable to authorize, you may need to <NavLink
+                            to={ROUTE_CONSTANTS.REGISTRATION_PAGE}>register</NavLink>
                         </Typography>
-                        <form onSubmit={this.onSubmit} className='form' color="secondary">
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input onChange={this.onChangeSignIn} disableUnderline={true} id="email"
-                                       name="email" autoComplete="email" autoFocus/>
-                            </FormControl>
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input onChange={this.onChangeSignIn} disableUnderline={true} name="password"
-                                       type="password" id="password"
-                                       autoComplete="current-password"/>
-                            </FormControl>
-                            <FormControlLabel
-                                control={<Checkbox onChange={this.onChangeSignIn} value="remember" id="remember"
-                                                   color="secondary"/>}
-                                label="Remember me"
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="secondary"
-                                className='submit'
-                            >
-                                Sign in
-                            </Button>
-                            <Typography component="p" variant="subtitle2">
-                                If you are unable to authorize, you may need to <NavLink
-                                to={ROUTE_CONSTANTS.REGISTRATION_PAGE}>register</NavLink>
-                            </Typography>
-                        </form>
-                    </Paper>
-                </main>
+                    </form>
+                </Paper>
+            </main>
         )
     }
 }
 
+const mapStateToProps = ( state: any ) => state;
+export default connect( mapStateToProps, {...actions} )( withRouter( Login ) );
 
-export default Login;
 
