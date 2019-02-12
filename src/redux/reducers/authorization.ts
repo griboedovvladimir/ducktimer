@@ -1,5 +1,5 @@
-import {actions} from '../actons/actions';
-import {IAuthorize} from '../actons/authorize';
+import {actions} from '../actons';
+import {IAuthorize} from '../actons';
 
 const initialState = {token: ''};
 

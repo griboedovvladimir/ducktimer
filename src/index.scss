@@ -175,6 +175,7 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  cursor: default;
 }
 
 h1 {
@@ -386,7 +387,7 @@ h1 {
   flex-direction: column;
   position: absolute;
   width: 400px;
-  height: auto;
+  min-height: 250px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
@@ -439,6 +440,10 @@ dt{
 
 /*//////////////////////////timers/////////////////////////////////////*/
 .timers {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
   flex-direction:column;
   border: 2px solid black;
   width: 250px;
@@ -469,6 +474,7 @@ dt{
   border: none;
   outline: none;
   width: 25px;
+  cursor: pointer;
 }
 .timerpanel {
   text-align: center;
@@ -533,7 +539,7 @@ dt{
   width:100%;
   outline: none;
 }
-.settimerpanel form p p{
+.settimerpanel form div p{
   display: flex;
   flex-wrap: wrap;
   margin-top: 3px;
@@ -578,6 +584,7 @@ dt{
   margin: 5px 0;
   border-radius: 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .timerpanel {
@@ -596,7 +603,7 @@ dt{
   display: block;
 }
 
-.storkUp {
+.stork{
   box-shadow: none;
   border-radius: 5px;
   border: none;
@@ -606,26 +613,10 @@ dt{
   font-size: 15px;
   transition: font-size 0.2s ease-out 0.2s;
   height: 30px;
+  cursor: pointer;
 }
 
-.storkUp:hover {
-  font-size: 22px;
-  transition: font-size 0.2s ease-out 0.2s;
-}
-
-.storkDown {
-  box-shadow: none;
-  border-radius: 5px;
-  border: none;
-  background-color: transparent;
-  width: 100%;
-  height: 30px;
-  outline: none;
-  font-size: 15px;
-  transition: font-size 0.2s ease-out 0.2s;
-}
-
-.storkDown:hover {
+.stork:hover {
   font-size: 22px;
   transition: font-size 0.2s ease-out 0.2s;
 }
@@ -722,4 +713,12 @@ dt{
 .checkbox:checked + .checkbox-label:before {
   left: 30px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px red;
+}
+
+.mixer-field{
+  width:30px
+}
+.mixer-labels{
+  font-weight:700;
+  margin-top:20px;
 }

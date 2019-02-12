@@ -5,9 +5,9 @@ class RightMenu extends Component {
         return (
             <div className="rightpanel">
             <div className="panel">
-                <button className="icon2"></button>
-                <button className="icon2"></button>
-                <button className="icon2"></button>
+                <button title="Volume mixer" className="icon2"></button>
+                <button title="Time/temp converter" className="icon2"></button>
+                <button title="Push processing" className="icon2"></button>
             </div>
             </div>
     )

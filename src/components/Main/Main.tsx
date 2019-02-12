@@ -6,6 +6,7 @@ import Timer from '../Timer';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
 import { storageService } from '../../shared/services/storage.service';
+import { ContentWindow } from '../ContentWindow/ContentWindow';
 
 class Main extends Component <any> {
     public date = new Date();
@@ -38,9 +39,16 @@ class Main extends Component <any> {
         this.setState( {...this.state, clock: d.toLocaleTimeString( 'en-GB' )} )
     }
 
+    public iniTimers(){
+       return this.props.timer.timers.map( (timer: any): React.ReactNode =>{
+           return <Timer key = {timer.id} id = {timer.id} />
+       })
+    }
+
     render() {
         return (
             <>
+                {/*<ContentWindow/>*/}
                 <ThemeSwitcher/>
                 <div className="row1">
                     <div id="clock">
@@ -48,12 +56,12 @@ class Main extends Component <any> {
                         <div id="time">{this.state.clock}</div>
                     </div>
                     <div className="logout">
-                        <button className="icon" onClick={this.onLogOut}></button>
+                        <button title="Log out" className="icon" onClick={this.onLogOut}></button>
                     </div>
                 </div>
                 <TopMenu/>
                 <RightMenu/>
-                <Timer/>
+                {this.iniTimers()}
             </>
         )
     }
