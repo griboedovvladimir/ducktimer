@@ -7,14 +7,30 @@ import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import Input from '@material-ui/core/Input/Input';
 import Button from '@material-ui/core/Button/Button';
 import './Registration.scss'
+import { restService } from '../../shared/services/rest.service';
+import { API_CONSTANTS } from '../../CONSTANTS';
+import { storageService } from '../../shared/services/storage.service';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actons';
+import { ILoginProps as IRegistrationProps } from '../Login/Login';
+import { ILoginState as IRegistrationState } from '../Login/Login';
 
 
-class Registration extends Component <{}> {
+class Registration extends Component <IRegistrationProps, IRegistrationState> {
     public register = {
         name: '',
         email: '',
         password: ''
     };
+
+    constructor( props: IRegistrationProps ) {
+        super( props );
+        this.state = {showMessage: false};
+        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) {
+            this.props.history.push( '/main' );
+        }
+    }
 
     public onChangeRegister = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
         switch ( event.target.id ) {
@@ -32,7 +48,17 @@ class Registration extends Component <{}> {
 
     public onSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
         event.preventDefault();
-        console.log( this.register )
+        restService.post( API_CONSTANTS.REGISTER, this.register ).then( response => {
+            response.text().then( token => {
+                if ( token ) {
+                    this.props.authorize( {authorize: token} );
+                    storageService.setTokenToSessionStorage( token );
+                    this.props.history.push( '/main' );
+                } else {
+                    this.setState( {...this.state, showMessage: true} )
+                }
+            } );
+        } )
     };
 
     public render(): React.ReactNode {
@@ -72,6 +98,9 @@ class Registration extends Component <{}> {
                         >
                             Register
                         </Button>
+                        {this.state.showMessage && <Typography component="p" variant="subtitle2" color="secondary">
+                            A user with this email already exists
+                        </Typography>}
                     </form>
                 </Paper>
             </main>
@@ -79,4 +108,5 @@ class Registration extends Component <{}> {
     }
 }
 
-export default Registration;
+const mapStateToProps = ( state: IRegistrationState ) => state;
+export default connect( mapStateToProps, {...actions} )( withRouter( Registration ) );

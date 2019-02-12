@@ -17,12 +17,12 @@ function setTokenToSessionStorage(token: string) {
     sessionStorage.setItem(STORAGE_CONSTANTS.SET_TOKEN, token);
 }
 
-function getTokenFromLocalStorage() {
-    localStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN);
+function getTokenFromLocalStorage(): string | null {
+   return localStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN) ;
 }
 
-function getTokenFromSessionStoragng() {
-    sessionStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN);
+function getTokenFromSessionStoragng(): string | null {
+   return sessionStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN);
 }
 
 function removeTokenFromLocalStorage() {

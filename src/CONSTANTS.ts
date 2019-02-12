@@ -7,6 +7,7 @@ export enum ROUTE_CONSTANTS {
 
 export enum API_CONSTANTS {
     LOGIN = 'backend/login.php',
+    REGISTER = 'backend/register.php',
 }
 
 export enum STORAGE_CONSTANTS {

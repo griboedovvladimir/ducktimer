@@ -13,16 +13,33 @@ import { NavLink } from 'react-router-dom';
 import { ROUTE_CONSTANTS } from '../../CONSTANTS';
 import { API_CONSTANTS } from '../../CONSTANTS';
 import { restService } from '../../shared/services/rest.service';
+import { storageService } from '../../shared/services/storage.service';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-class Login extends Component <any> {
+export interface ILoginProps extends RouteComponentProps {
+    authorization: { token: string },
+    authorize: ( payload: { authorize: string } ) => {};
+}
+export interface ILoginState {
+     showMessage: boolean
+ }
+
+class Login extends Component <ILoginProps, ILoginState> {
     public signIn = {
         email: '',
         password: '',
         remember: false,
     };
+
+    constructor( props: ILoginProps ) {
+        super( props );
+        this.state = {showMessage: false};
+        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) {
+            this.props.history.push( '/main' );
+        }
+    }
 
     public onChangeSignIn = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
         switch ( event.target.id ) {
@@ -40,11 +57,17 @@ class Login extends Component <any> {
 
     public onSubmit = ( event: React.FormEvent<HTMLFormElement> ): void => {
         event.preventDefault();
-        console.log( this.signIn );
-        restService.post( API_CONSTANTS.LOGIN, {} ).then( response => {
+        restService.post( API_CONSTANTS.LOGIN, this.signIn ).then( response => {
             response.text().then( token => {
-                this.props.authorize( {authorize: token} );
-                this.props.history.push( '/main' );
+                if ( token ) {
+                    this.props.authorize( {authorize: token} );
+                    this.signIn.remember
+                        ? storageService.setTokenToLocalStorage( token )
+                        : storageService.setTokenToSessionStorage( token );
+                    this.props.history.push( '/main' );
+                } else {
+                    this.setState( {...this.state, showMessage: true} )
+                }
             } );
         } );
     };
@@ -86,6 +109,9 @@ class Login extends Component <any> {
                         >
                             Sign in
                         </Button>
+                        {this.state.showMessage && <Typography component="p" variant="subtitle2" color="secondary">
+                            This user does not exist, maybe your password or email is not correct
+                        </Typography>}
                         <Typography component="p" variant="subtitle2">
                             If you are unable to authorize, you may need to <NavLink
                             to={ROUTE_CONSTANTS.REGISTRATION_PAGE}>register</NavLink>
@@ -97,7 +123,7 @@ class Login extends Component <any> {
     }
 }
 
-const mapStateToProps = ( state: any ) => state;
+const mapStateToProps = ( state: ILoginState ) => state;
 export default connect( mapStateToProps, {...actions} )( withRouter( Login ) );
 
 

@@ -5,8 +5,9 @@ import RightMenu from '../RightMenu';
 import Timer from '../Timer';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
+import { storageService } from '../../shared/services/storage.service';
 
-class Main extends Component {
+class Main extends Component <any> {
     public date = new Date();
     public state: any = {
         clock: this.date.toLocaleTimeString( 'en-GB' )
@@ -14,17 +15,22 @@ class Main extends Component {
 
     constructor( props: any ) {
         super( props );
+        if ( !( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) ) {
+            this.props.history.push( '/' );
+        }
         setInterval( () => {
             this.startClock()
         }, 1000 );
     }
 
-    public componentDidMount(){
-        console.log(this.props);
+    public componentDidMount() {
     }
 
     public onLogOut = () => {
-
+        storageService.removeTokenFromLocalStorage();
+        storageService.removeTokenFromSessionStoragng();
+        this.props.authorize( {authorize: undefined} );
+        this.props.history.push( '/' );
     };
 
     public startClock() {
@@ -41,7 +47,9 @@ class Main extends Component {
                         <span id="timeicon" className="icon2"> </span>
                         <div id="time">{this.state.clock}</div>
                     </div>
-                    <div className="logout"><button className="icon" onClick={this.onLogOut}></button></div>
+                    <div className="logout">
+                        <button className="icon" onClick={this.onLogOut}></button>
+                    </div>
                 </div>
                 <TopMenu/>
                 <RightMenu/>
@@ -51,6 +59,6 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (state: any) => state;
-export default connect(mapStateToProps, {...actions})( Main);
+const mapStateToProps = ( state: any ) => state;
+export default connect( mapStateToProps, {...actions} )( Main );
 
