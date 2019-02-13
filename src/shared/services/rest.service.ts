@@ -5,7 +5,7 @@ export const restService = {
     put,
 };
 
-function get( url: string, param: any ) {
+function get( url: string, param?: any ) {
     return fetch( url, {method: 'GET'} )
 }
 
@@ -17,7 +17,7 @@ function post( url: string, param: {} ) {
     } )
 }
 
-function _delete( url: string, param: {} ) {
+function _delete( url: string, param?: {} ) {
     return fetch( url, {method: 'DELETE'} )
 }
 

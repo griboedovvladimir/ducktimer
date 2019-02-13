@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
+import  FilmPresetForm  from '../FilmPresetForm';
+import { API_CONSTANTS } from '../../CONSTANTS';
+import { restService } from '../../shared/services/rest.service';
 
 class Timer extends Component <any, any> {
     public timerValue = {
@@ -16,15 +19,13 @@ class Timer extends Component <any, any> {
             set: undefined,
             panelIsOpen: false,
             timerFinished: false,
+            formIsActivated: null
         }
     }
 
     private checkTimerValue( value: string ): boolean {
         let reg = /^[0-5][0-9]$/;
         return reg.test( value );
-    }
-
-    public componentDidMount() {
     }
 
     public componentWillUnmount() {
@@ -65,13 +66,24 @@ class Timer extends Component <any, any> {
     };
 
     public onTogglePanel = (): void => {
-        this.setState( {...this.state, panelIsOpen: ( !this.state.panelIsOpen )} );
-
+        this.setState( {...this.state, panelIsOpen: ( !this.state.panelIsOpen ), formIsActivated: false } );
     };
 
     public getFilmOptions = (): void => {
-
+        if ( !this.state.formIsActivated ) {
+            this.filmFormActivate( 'Loading...' );
+            restService.post( API_CONSTANTS.FILM_FORM_FIRST_STEP,'' ).then( response => response.json() )
+                .then(options => {
+                    this.filmFormActivate( <FilmPresetForm formsOptions={options}/> );
+                })
+        } else {
+            this.filmFormActivate( null )
+        }
     };
+
+    private filmFormActivate( value: string | React.ReactNode | null ) {
+        this.setState( {...this.state, formIsActivated: value} );
+    }
 
     private timerOverHandle(): void {
         let audio = new Audio();
@@ -145,38 +157,7 @@ class Timer extends Component <any, any> {
                         <button onClick={this.getFilmOptions} title="Load film preset time" className="filmbutton">
                         </button>
                     </div>
-
-                    <form>
-                        <p>Select film, film type and developer</p>
-                        <select id="film-select" name="film-select">
-                            <option>select</option>
-                        </select>
-                        <select id="film-type-select" name="film-type-select">
-                            <option>35mm</option>
-                            <option>120</option>
-                            <option>sheet</option>
-                        </select>
-                        <select id="dev-select" name="dev-select">
-                            <option>select</option>
-                        </select>
-                        <button type="button">Select</button>
-                        {/*Selected film and developer can't use together*/}
-                        <div>
-                            <div>Select parameters
-                                <p>
-                                    <span>ISO/ASA</span>npm
-                                    <span>dilution</span>
-                                    <span>temperature</span>
-                                </p>
-                            </div>
-                            <select name="iso" id="iso"/>
-                            <select name="dilution" id="dilution"/>
-                            <select name="temp" id="temp"/>
-                            <button type="button">To set form</button>
-                            {/*Time not found, select other parameters*/}
-                        </div>
-                    </form>
-
+                    {this.state.formIsActivated}
                 </div>}
                 <button onClick={this.onTogglePanel} className="stork">
                     {this.state.panelIsOpen ? '▲' : '▼'}

@@ -6,7 +6,6 @@ import Timer from '../Timer';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
 import { storageService } from '../../shared/services/storage.service';
-import { ContentWindow } from '../ContentWindow/ContentWindow';
 
 class Main extends Component <any> {
     public date = new Date();
