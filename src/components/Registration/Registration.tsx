@@ -27,7 +27,7 @@ class Registration extends Component <IRegistrationProps, IRegistrationState> {
     constructor( props: IRegistrationProps ) {
         super( props );
         this.state = {showMessage: false};
-        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) {
+        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStorage() ) {
             this.props.history.push( '/main' );
         }
     }

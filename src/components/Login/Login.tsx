@@ -36,7 +36,7 @@ class Login extends Component <ILoginProps, ILoginState> {
     constructor( props: ILoginProps ) {
         super( props );
         this.state = {showMessage: false};
-        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) {
+        if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStorage() ) {
             this.props.history.push( '/main' );
         }
     }

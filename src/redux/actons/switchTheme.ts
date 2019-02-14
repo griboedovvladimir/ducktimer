@@ -1,0 +1,14 @@
+import { ActionCreator } from 'redux';
+import { actions } from './actions';
+
+export interface switchTheme {
+    type: string;
+    payload:  string ;
+}
+
+export const switchTheme: ActionCreator<switchTheme> = ( theme: string ) => {
+    return {
+        type: actions.SWITCH_THEME,
+        payload: theme
+    }
+};

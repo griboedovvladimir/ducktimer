@@ -12,6 +12,13 @@ class Timer extends Component <any, any> {
         sec: '00'
     };
 
+    public timerParams = {
+        selectProcess: 'film developer',
+        otherProcess: '',
+        note:''
+
+    };
+
     constructor( props: any ) {
         super( props );
         this.state = {
@@ -19,13 +26,23 @@ class Timer extends Component <any, any> {
             set: undefined,
             panelIsOpen: false,
             timerFinished: false,
-            formIsActivated: null
+            formIsActivated: null,
+            selectProcess: '',
+            otherProcess: '',
+            note:''
         }
     }
 
     private checkTimerValue( value: string ): boolean {
         let reg = /^[0-5][0-9]$/;
         return reg.test( value );
+    }
+
+    public componentDidUpdate(): void {
+        if(this.props.presetTime.presetTime !== "00.00.00"){
+            this.setState( {...this.state, currentTimerValue: this.props.presetTime.presetTime, timerFinished: false} );
+            this.props.setTime( "00.00.00");
+        }
     }
 
     public componentWillUnmount() {
@@ -48,9 +65,28 @@ class Timer extends Component <any, any> {
         }
     };
 
+    public onChangeTimerParams = (event: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>): void => {
+        switch ( event.target.name ) {
+            case 'process':
+                this.timerParams.otherProcess = event.target.value;
+                break;
+            case 'note':
+                this.timerParams.note = event.target.value;
+                break;
+        }
+    };
+
+    public onSelectProcess = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+        switch ( event.target.name ) {
+            case 'selectProcess':
+                this.timerParams.selectProcess = event.target.value;
+                break;
+        }
+    };
+
     public onSetTimer = (): void => {
         const timerValue = `${this.timerValue.hours}:${this.timerValue.min}:${this.timerValue.sec}`;
-        this.setState( {...this.state, currentTimerValue: timerValue, timerFinished: false} );
+        this.setState( {...this.state, currentTimerValue: timerValue, timerFinished: false, ...this.timerParams} );
     };
 
     public onStartTimer = (): void => {
@@ -123,17 +159,20 @@ class Timer extends Component <any, any> {
 
     render() {
         let timersClassList = this.state.timerFinished ? 'timers finished' : 'timers';
+        let process = (this.state.otherProcess ? this.state.otherProcess : this.state.selectProcess) || 'default value';
+
         return (
             <div className={timersClassList}>
                 <button onClick={this.onRemoveTimer} className="delete">×</button>
-                <h4>defult process</h4>
+                <h4>{process}</h4>
                 <div className='timerpanel'>
-                    <span>{this.state.currentTimerValue || '00:00:00'}</span> <p> Note: </p>
+                    <span>{this.state.currentTimerValue || '00:00:00'}</span> <p> Note: {this.state.note}</p>
                     <button onClick={this.onStopTimer} title="pause" className="icon2"></button>
                     <button onClick={this.onStartTimer} title="start" className="icon2"></button>
                     <button onClick={this.onSetTimer} title="set" className="icon2"></button>
                 </div>
-                {this.state.panelIsOpen && <div className="settimerpanel">Select process<select>
+                {this.state.panelIsOpen && <div className="settimerpanel" defaultValue=" ">Select process
+                    <select onChange={this.onSelectProcess} name="selectProcess">
                     <option>film developer</option>
                     <option>developer</option>
                     <option>fix bath</option>
@@ -143,7 +182,7 @@ class Timer extends Component <any, any> {
                     <option>stabilised</option>
                     <option>exposure</option>
                 </select>
-                    <br/>Other process<input type="text" name="process" size={4} defaultValue=""/>
+                    <br/>Other process<input onChange={this.onChangeTimerParams} type="text" name="process" size={4} defaultValue={this.state.otherProcess}/>
                     <div>
                         <input onChange={this.onChangeTimerValue} type="text" name="hours" size={1}
                                defaultValue={this.timerValue.hours}/>:
@@ -152,7 +191,7 @@ class Timer extends Component <any, any> {
                         <input onChange={this.onChangeTimerValue} type="text" name="sec" size={1}
                                defaultValue={this.timerValue.sec}/>
                     </div>
-                    <textarea className="timerinputs" placeholder="Note"/>
+                    <textarea onChange={this.onChangeTimerParams} name="note" className="timerinputs" placeholder="Note"/>
                     <div>
                         <button onClick={this.getFilmOptions} title="Load film preset time" className="filmbutton">
                         </button>

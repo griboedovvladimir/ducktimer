@@ -15,7 +15,7 @@ class Main extends Component <any> {
 
     constructor( props: any ) {
         super( props );
-        if ( !( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStoragng() ) ) {
+        if ( !( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStorage() ) ) {
             this.props.history.push( '/' );
         }
         setInterval( () => {
@@ -28,7 +28,7 @@ class Main extends Component <any> {
 
     public onLogOut = () => {
         storageService.removeTokenFromLocalStorage();
-        storageService.removeTokenFromSessionStoragng();
+        storageService.removeTokenFromSessionStorage();
         this.props.authorize( {authorize: undefined} );
         this.props.history.push( '/' );
     };
@@ -46,8 +46,7 @@ class Main extends Component <any> {
 
     render() {
         return (
-            <>
-                {/*<ContentWindow/>*/}
+            <div className={this.props.currentTheme.theme}>
                 <ThemeSwitcher/>
                 <div className="row1">
                     <div id="clock">
@@ -59,9 +58,13 @@ class Main extends Component <any> {
                     </div>
                 </div>
                 <TopMenu/>
+                <div className= "row2">
                 <RightMenu/>
+                <div className="table">
                 {this.iniTimers()}
-            </>
+                </div>
+                </div>
+            </div>
         )
     }
 }

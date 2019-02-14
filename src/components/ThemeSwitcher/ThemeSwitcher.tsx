@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actons';
+import { withRouter } from 'react-router';
+import { ILoginState } from '../Login/Login';
 
-class ThemeSwitcher extends Component{
-    render(){
+class ThemeSwitcher extends Component <any> {
+
+    public switchHandle = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
+        this.props.switchTheme( event.target.checked ? 'b-n-r' : 'b-n-w'  );
+    };
+
+    public render(): React.ReactNode {
         return (
             <div id="mode">
-                <input className="checkbox" id="checkbox1" type="checkbox"/>
+                <input onChange={this.switchHandle} className="checkbox" id="checkbox1" type="checkbox"/>
                 <label htmlFor="checkbox1" className="checkbox-label">
                     <span className="on"></span>
                     <span className="off"></span>
@@ -14,4 +23,5 @@ class ThemeSwitcher extends Component{
     }
 }
 
-export  default ThemeSwitcher
+const mapStateToProps = ( state: ILoginState ) => state;
+export default connect( mapStateToProps, {...actions} )( withRouter( ThemeSwitcher ) );

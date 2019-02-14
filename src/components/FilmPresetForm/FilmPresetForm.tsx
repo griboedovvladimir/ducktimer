@@ -13,13 +13,21 @@ interface IFilmPresetFormState {
 
 class FilmPresetForm extends Component <IFilmPresetFormProps, any> {
     public filmFormModel = {
-        film: 'Adox CHM 125',
+        film: '',
         type: '35mm',
-        dev: '510-Pyro',
+        dev: '',
     };
 
     public state = {
         secondFilmPresetForm: null
+    };
+
+    public componentDidMount(): void {
+        this.filmFormModel = {
+            film: this.props.formsOptions[ 0 ][ 0 ],
+            type: '35mm',
+            dev: this.props.formsOptions[ 1 ][ 0 ],
+        };
     };
 
     public onChangeFormFields = ( event: React.ChangeEvent<HTMLSelectElement> ): void => {
@@ -42,7 +50,8 @@ class FilmPresetForm extends Component <IFilmPresetFormProps, any> {
             .then( data => {
                 data === 'false'
                     ? this.setSecondFilmPresetForm( 'Selected film and developer can\'t use together' )
-                    : this.setSecondFilmPresetForm( <SecondFilmPresetForm firstFormData ={this.filmFormModel} formsOptions = {data}/> )
+                    : this.setSecondFilmPresetForm( <SecondFilmPresetForm firstFormData={this.filmFormModel}
+                                                                          formsOptions={data}/> )
             } );
     };
 

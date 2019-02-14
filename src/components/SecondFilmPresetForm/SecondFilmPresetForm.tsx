@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { restService } from '../../shared/services/rest.service';
 import { API_CONSTANTS } from '../../CONSTANTS';
+import { parseMinutsIntoReadableTime } from '../../shared/helpers/parseMinutsIntoReadableTime';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actons';
 
 interface ISecondFilmPresetFormProps {
     formsOptions: string[][];
-    firstFormData: any
+    firstFormData: any;
+    setTime: (data: string)=>{};
 }
 
-class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps> {
+class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps, any> {
     public parametersModel = {
         ASAISO: '',
         dilution: '',
         temp: ''
+    };
+    public state = {
+        stateMessage: ''
     };
 
     public componentDidMount(): void {
@@ -37,8 +44,22 @@ class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps> {
     };
 
     public setTime = () => {
-        console.log( {...this.parametersModel, ...this.props.firstFormData} );
+        this.setStateMessage( 'Loading...' );
+        restService.post( API_CONSTANTS.GET_TIME_BY_PARAMS, {...this.parametersModel, ...this.props.firstFormData} )
+            .then( response => response.json() )
+            .then( data => {
+                if ( data === 'false' ) {
+                    this.setStateMessage( 'Time not found, select other parameters' );
+                } else {
+                    this.setStateMessage( null );
+                    this.props.setTime( parseMinutsIntoReadableTime(data));
+                }
+            } )
     };
+
+    private setStateMessage( value: string | null ) {
+        this.setState( {...this.state, stateMessage: value} )
+    }
 
     public render(): React.ReactNode {
         const dilution = this.props.formsOptions[ 0 ].map( dilution => <option>{dilution}</option> );
@@ -57,10 +78,11 @@ class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps> {
                 <select name="dilution" id="dilution">{dilution}</select>
                 <select name="temp" id="temp">{temp}</select>
                 <button onClick={this.setTime} type="button">Set time</button>
-                {/*Time not found, select other parameters*/}
+                {this.state.stateMessage}
             </div>
         )
     }
 }
 
-export default SecondFilmPresetForm;
+const mapStateToProps = ( state: any, ownProps: any ) => ( {...state, ...ownProps} );
+export default connect( mapStateToProps, {...actions} )( SecondFilmPresetForm );

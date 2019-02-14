@@ -9,7 +9,8 @@ export enum API_CONSTANTS {
     LOGIN = 'backend/login.php',
     REGISTER = 'backend/register.php',
     FILM_FORM_FIRST_STEP = 'backend/filmform.php',
-    FILM_FORM_SECOND_STEP = 'backend/filmform2.php'
+    FILM_FORM_SECOND_STEP = 'backend/filmform2.php',
+    GET_TIME_BY_PARAMS = 'backend/filmformset.php'
 }
 
 export enum STORAGE_CONSTANTS {

@@ -4,9 +4,9 @@ export const storageService = {
     setTokenToLocalStorage,
     setTokenToSessionStorage,
     getTokenFromLocalStorage,
-    getTokenFromSessionStoragng,
+    getTokenFromSessionStorage,
     removeTokenFromLocalStorage,
-    removeTokenFromSessionStoragng
+    removeTokenFromSessionStorage
 };
 
 function setTokenToLocalStorage(token: string) {
@@ -21,7 +21,7 @@ function getTokenFromLocalStorage(): string | null {
    return localStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN) ;
 }
 
-function getTokenFromSessionStoragng(): string | null {
+function getTokenFromSessionStorage(): string | null {
    return sessionStorage.getItem(STORAGE_CONSTANTS.SET_TOKEN);
 }
 
@@ -29,6 +29,6 @@ function removeTokenFromLocalStorage() {
     localStorage.removeItem(STORAGE_CONSTANTS.SET_TOKEN);
 }
 
-function removeTokenFromSessionStoragng() {
+function removeTokenFromSessionStorage() {
     sessionStorage.removeItem(STORAGE_CONSTANTS.SET_TOKEN);
 }
