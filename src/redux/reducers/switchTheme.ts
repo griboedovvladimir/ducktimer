@@ -1,6 +1,7 @@
 import { actions } from '../actons';
+import { ISwitchTheme } from '../actons';
 
-export default ( state = {theme: 'b-n-w'}, action: any ) => {
+export default ( state = {theme: 'b-n-w'}, action: ISwitchTheme ) => {
     switch ( action.type ) {
         case actions.SWITCH_THEME:
             return {

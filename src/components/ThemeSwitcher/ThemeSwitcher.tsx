@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
-import { withRouter } from 'react-router';
 import { ILoginState } from '../Login/Login';
 
-class ThemeSwitcher extends Component <any> {
+interface IThemeSwitcherProps {
+    switchTheme: (theme: string) => {}
+}
+
+class ThemeSwitcher extends Component <IThemeSwitcherProps> {
 
     public switchHandle = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
         this.props.switchTheme( event.target.checked ? 'b-n-r' : 'b-n-w'  );
@@ -24,4 +27,4 @@ class ThemeSwitcher extends Component <any> {
 }
 
 const mapStateToProps = ( state: ILoginState ) => state;
-export default connect( mapStateToProps, {...actions} )( withRouter( ThemeSwitcher ) );
+export default connect( mapStateToProps, {...actions} )(  ThemeSwitcher );

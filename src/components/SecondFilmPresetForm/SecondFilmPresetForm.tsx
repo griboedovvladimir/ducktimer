@@ -11,7 +11,13 @@ interface ISecondFilmPresetFormProps {
     setTime: (data: string)=>{};
 }
 
-class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps, any> {
+interface ISecondFilmPresetFormState {
+    stateMessage: string | null
+}
+
+
+
+class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps, ISecondFilmPresetFormState> {
     public parametersModel = {
         ASAISO: '',
         dilution: '',

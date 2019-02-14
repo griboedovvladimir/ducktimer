@@ -1,7 +1,11 @@
 import { actions } from '../actons';
 
+interface ITime{
+    type: string;
+    payload: string |  {id: string};
+}
 
-export default ( state: any = {timers: []}, action: any ) => {
+export default ( state: any = {timers: []}, action: ITime ) => {
     switch ( action.type ) {
         case actions.ADD_TIMER:
             return {

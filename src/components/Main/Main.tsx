@@ -6,8 +6,10 @@ import Timer from '../Timer';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
 import { storageService } from '../../shared/services/storage.service';
+import { IStoreInterface } from '../../interfaces/store.interface'
+import { RouteComponentProps } from 'react-router';
 
-class Main extends Component <any> {
+class Main extends Component <IStoreInterface & RouteComponentProps> {
     public date = new Date();
     public state: any = {
         clock: this.date.toLocaleTimeString( 'en-GB' )
@@ -39,7 +41,7 @@ class Main extends Component <any> {
     }
 
     public iniTimers(){
-       return this.props.timer.timers.map( (timer: any): React.ReactNode =>{
+       return this.props.timer.timers.map( (timer: {id:string}): React.ReactNode =>{
            return <Timer key = {timer.id} id = {timer.id} />
        })
     }

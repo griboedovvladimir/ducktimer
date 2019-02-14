@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class RightMenu extends Component {
+class RightMenu extends Component <{}> {
     render() {
         return (
             <div className="rightpanel">

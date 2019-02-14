@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actons';
 import { guid } from '../../shared/helpers/guid';
 
+
 class TopMenu extends Component <any> {
 
     public addTimer = (): void => {

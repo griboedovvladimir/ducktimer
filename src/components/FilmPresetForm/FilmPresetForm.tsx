@@ -11,7 +11,7 @@ interface IFilmPresetFormState {
     secondFilmPresetForm: string | null | React.ReactNode;
 }
 
-class FilmPresetForm extends Component <IFilmPresetFormProps, any> {
+class FilmPresetForm extends Component <IFilmPresetFormProps, IFilmPresetFormState> {
     public filmFormModel = {
         film: '',
         type: '35mm',
@@ -77,7 +77,6 @@ class FilmPresetForm extends Component <IFilmPresetFormProps, any> {
                     {developers}
                 </select>
                 <button onClick={this.getSecondFilmFormOptions} type="button">Select</button>
-                {/*Selected film and developer can't use together*/}
                 {this.state.secondFilmPresetForm}
             </form>
         )
