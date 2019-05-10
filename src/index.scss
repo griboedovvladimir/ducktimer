@@ -234,7 +234,6 @@ padding: 10px;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 1;
-    background-color: white;
   }
 
   #loginForm p {
@@ -305,7 +304,6 @@ padding: 10px;
     height: 180px;
     justify-content: space-around;
     margin: 10px 0 0 0;
-    background-color: white;
   }
 
   /*//////////////////////dialog window//////////////////////*/
@@ -452,7 +450,6 @@ padding: 10px;
     width: 250px;
     border-radius: 10px;
     margin: 10px 0 0 0;
-    background-color: white;
 
   }
   .timers h4 {
@@ -467,7 +464,6 @@ padding: 10px;
   }
   .delete {
     float: right;
-    background-color: white;
     align-self: flex-end;
     background-color: transparent;
     right: 0;
@@ -479,15 +475,15 @@ padding: 10px;
     width: 25px;
     cursor: pointer;
   }
-  .timerpanel {
+  .timer-panel {
     text-align: center;
   }
-  .timerpanel p {
+  .timer-panel p {
     text-align: left;
     width: 100%;
     word-break: break-all;
   }
-  .timerpanel span {
+  .timer-panel span {
     font-size: 340%;
     font-family: 'ProximaNova-Regular';
     text-align: left;
@@ -496,41 +492,41 @@ padding: 10px;
     width: 100%;
     display: inline-block;
   }
-  .settimerpanel div {
+  .set-timer-panel div {
     text-align: center;
   }
-  .settimerpanel textarea {
+  .set-timer-panel textarea {
     width: 95%;
     border: 1px solid black;
     border-radius: 5px;
     outline: none;
     resize: none;
   }
-  .settimerpanel input {
+  .set-timer-panel input {
     border: 1px solid black;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
 
   }
-  .settimerpanel input[name="process"] {
+  .set-timer-panel input[name="process"] {
     width: 50%;
   }
-  .settimerpanel select {
+  .set-timer-panel select {
     width: 50%;
     border: 1px solid black;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
   }
-  .settimerpanel form select {
+  .set-timer-panel form select {
     width: 32%;
     border: 1px solid black;
     margin: 5px 0px 3px 2px;
     border-radius: 5px;
     outline: none;
   }
-  .settimerpanel form button {
+  .set-timer-panel form button {
     box-shadow: none;
     border-radius: 5px;
     border: 2px solid black;
@@ -543,7 +539,7 @@ padding: 10px;
     outline: none;
     cursor: pointer;
   }
-  .settimerpanel form div p {
+  .set-timer-panel form div p {
     display: flex;
     flex-wrap: wrap;
     margin-top: 3px;
@@ -551,11 +547,11 @@ padding: 10px;
     width: 100%;
     align-self: center;
   }
-  .settimerpanel form p {
+  .set-timer-panel form p {
     margin-top: 3px;
 
   }
-  .settimerpanel form span {
+  .set-timer-panel form span {
     font-size: 8pt;
   }
 
@@ -577,7 +573,7 @@ padding: 10px;
     @extend .unselected
   }
 
-  .filmbutton {
+  .film-button {
     font-family: 'icon';
     font-size: 40px;
     box-shadow: none;
@@ -591,11 +587,11 @@ padding: 10px;
     cursor: pointer;
   }
 
-  .timerpanel {
+  .timer-panel {
     padding: 0 10px;
   }
 
-  .settimerpanel {
+  .set-timer-panel {
     padding: 0 10px;
   }
 
@@ -603,7 +599,7 @@ padding: 10px;
     display: none;
   }
 
-  .timerinputs {
+  .timer-inputs {
     display: block;
   }
 
@@ -730,6 +726,20 @@ padding: 10px;
 }
 
 .b-n-r{
+  body, a, button, input, select, div, span, label,
+  textarea, .checkbox-label:before{
+  background-color: black;
+}
+
+  .checkbox-label:before{
+    background-color: black!important;
+  }
+
+  body{
+    padding: 10px 10px 0;
+    height: 100%;
+  }
+
   a{
     color:darkred;
   }
@@ -866,7 +876,6 @@ padding: 10px;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 1;
-    background-color: white;
   }
 
   #loginForm p {
@@ -937,7 +946,6 @@ padding: 10px;
     height: 180px;
     justify-content: space-around;
     margin: 10px 0 0 0;
-    background-color: white;
   }
 
   /*//////////////////////dialog window//////////////////////*/
@@ -1084,8 +1092,6 @@ padding: 10px;
     width: 250px;
     border-radius: 10px;
     margin: 10px 0 0 0;
-    background-color: white;
-
   }
 
   *{
@@ -1116,15 +1122,15 @@ padding: 10px;
     width: 25px;
     cursor: pointer;
   }
-  .timerpanel {
+  .timer-panel {
     text-align: center;
   }
-  .timerpanel p {
+  .timer-panel p {
     text-align: left;
     width: 100%;
     word-break: break-all;
   }
-  .timerpanel span {
+  .timer-panel span {
     font-size: 340%;
     font-family: 'ProximaNova-Regular';
     text-align: left;
@@ -1133,41 +1139,41 @@ padding: 10px;
     width: 100%;
     display: inline-block;
   }
-  .settimerpanel div {
+  .set-timer-panel div {
     text-align: center;
   }
-  .settimerpanel textarea {
+  .set-timer-panel textarea {
     width: 95%;
     border: 1px solid red;
     border-radius: 5px;
     outline: none;
     resize: none;
   }
-  .settimerpanel input {
+  .set-timer-panel input {
     border: 1px solid red;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
 
   }
-  .settimerpanel input[name="process"] {
+  .set-timer-panel input[name="process"] {
     width: 50%;
   }
-  .settimerpanel select {
+  .set-timer-panel select {
     width: 50%;
     border: 1px solid red;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
   }
-  .settimerpanel form select {
+  .set-timer-panel form select {
     width: 32%;
     border: 1px solid red;
     margin: 5px 0px 3px 2px;
     border-radius: 5px;
     outline: none;
   }
-  .settimerpanel form button {
+  .set-timer-panel form button {
     box-shadow: none;
     border-radius: 5px;
     border: 2px solid red;
@@ -1180,7 +1186,7 @@ padding: 10px;
     outline: none;
     cursor: pointer;
   }
-  .settimerpanel form div p {
+  .set-timer-panel form div p {
     display: flex;
     flex-wrap: wrap;
     margin-top: 3px;
@@ -1188,11 +1194,11 @@ padding: 10px;
     width: 100%;
     align-self: center;
   }
-  .settimerpanel form p {
+  .set-timer-panel form p {
     margin-top: 3px;
 
   }
-  .settimerpanel form span {
+  .set-timer-panel form span {
     font-size: 8pt;
   }
 
@@ -1214,7 +1220,7 @@ padding: 10px;
     @extend .unselected
   }
 
-  .filmbutton {
+  .film-button {
     font-family: 'icon';
     font-size: 40px;
     box-shadow: none;
@@ -1228,11 +1234,11 @@ padding: 10px;
     cursor: pointer;
   }
 
-  .timerpanel {
+  .timer-panel {
     padding: 0 10px;
   }
 
-  .settimerpanel {
+  .set-timer-panel {
     padding: 0 10px;
   }
 
@@ -1240,7 +1246,7 @@ padding: 10px;
     display: none;
   }
 
-  .timerinputs {
+  .timer-inputs {
     display: block;
   }
 

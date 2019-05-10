@@ -8,7 +8,8 @@ import * as actions from '../../redux/actons';
 interface ISecondFilmPresetFormProps {
     formsOptions: string[][];
     firstFormData: any;
-    setTime: (data: string)=>{};
+    setTime: (data: any)=>{};
+    id: string;
 }
 
 interface ISecondFilmPresetFormState {
@@ -51,16 +52,16 @@ class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps, ISecon
 
     public setTime = () => {
         this.setStateMessage( 'Loading...' );
-        restService.post( API_CONSTANTS.GET_TIME_BY_PARAMS, {...this.parametersModel, ...this.props.firstFormData} )
-            .then( response => response.json() )
-            .then( data => {
-                if ( data === 'false' ) {
-                    this.setStateMessage( 'Time not found, select other parameters' );
-                } else {
-                    this.setStateMessage( null );
-                    this.props.setTime( parseMinutsIntoReadableTime(data));
-                }
-            } )
+                restService.post( API_CONSTANTS.GET_TIME_BY_PARAMS, {...this.parametersModel, ...this.props.firstFormData} )
+                    .then( response => response.json() )
+                    .then( data => {
+                        if ( data === 'false' ) {
+                            this.setStateMessage( 'Time not found, select other parameters' );
+                        } else {
+                            this.setStateMessage( null );
+                            this.props.setTime( {time:parseMinutsIntoReadableTime(data), id: this.props.id});
+                        }
+                    } );
     };
 
     private setStateMessage( value: string | null ) {

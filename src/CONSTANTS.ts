@@ -16,3 +16,7 @@ export enum API_CONSTANTS {
 export enum STORAGE_CONSTANTS {
     SET_TOKEN = 'SET_TOKEN'
 }
+
+export enum OTHER_CONSTANTS {
+    START_TIME ='00:00:00'
+}

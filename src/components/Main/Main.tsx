@@ -41,8 +41,8 @@ class Main extends Component <IStoreInterface & RouteComponentProps> {
     }
 
     public iniTimers(){
-       return this.props.timer.timers.map( (timer: {id:string}): React.ReactNode =>{
-           return <Timer key = {timer.id} id = {timer.id} />
+       return this.props.timer.timers.map( (timer: { time: string; id:string}): React.ReactNode =>{
+           return <Timer key = {timer.id} id = {timer.id} time={timer.time} />
        })
     }
 

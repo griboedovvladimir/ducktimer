@@ -7,7 +7,7 @@ import { guid } from '../../shared/helpers/guid';
 class TopMenu extends Component <any> {
 
     public addTimer = (): void => {
-        this.props.addTimer( {id: guid()} )
+        this.props.addTimer( {id: guid(), time: '00:00:00' } );
     };
 
     public clearTimersBoard = (): void => {

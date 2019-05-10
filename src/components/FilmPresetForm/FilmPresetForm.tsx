@@ -5,6 +5,7 @@ import SecondFilmPresetForm from '../SecondFilmPresetForm/SecondFilmPresetForm';
 
 interface IFilmPresetFormProps {
     formsOptions: string[][];
+    id: string[];
 }
 
 interface IFilmPresetFormState {
@@ -47,10 +48,10 @@ class FilmPresetForm extends Component <IFilmPresetFormProps, IFilmPresetFormSta
     public getSecondFilmFormOptions = (): void => {
         this.setSecondFilmPresetForm( 'Loading...' );
         restService.post( API_CONSTANTS.FILM_FORM_SECOND_STEP, this.filmFormModel ).then( resp => resp.json() )
-            .then( data => {
+            .then( (data: any) => {
                 data === 'false'
                     ? this.setSecondFilmPresetForm( 'Selected film and developer can\'t use together' )
-                    : this.setSecondFilmPresetForm( <SecondFilmPresetForm firstFormData={this.filmFormModel}
+                    : this.setSecondFilmPresetForm( <SecondFilmPresetForm id={this.props.id} firstFormData={this.filmFormModel}
                                                                           formsOptions={data}/> )
             } );
     };
