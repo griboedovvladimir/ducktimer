@@ -10,7 +10,7 @@ interface IThemeSwitcherProps {
 class ThemeSwitcher extends Component <IThemeSwitcherProps> {
 
     public switchHandle = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
-        // this.props.switchTheme( event.target.checked ? 'b-n-r' : 'b-n-w'  );
+        this.props.switchTheme( event.target.checked ? 'b-n-r' : 'b-n-w'  );
         document.getElementsByTagName( 'html' )[0].className ='';
         document.getElementsByTagName( 'html' )[0].classList.add(event.target.checked ? 'b-n-r' : 'b-n-w');
     };

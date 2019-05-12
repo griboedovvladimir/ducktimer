@@ -22,25 +22,31 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -59,6 +65,7 @@ table {
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ProximaNova-Bold";
   src: url("shared/fonts/ProximaNova-Bold.eot");
@@ -68,6 +75,7 @@ table {
   font-style: normal;
   font-weight: normal;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -82,24 +90,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
-/* variables */
 
-.unselected{
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  box-shadow: none;
-  border: none;
-  background: none;
-  outline: none;
-  cursor: pointer;
+#root {
+  padding: 10px;
 }
 
-#root{
-padding: 10px;
-}
+@mixin common-styles(
+  $mainColor: transpetent,
+  $color-1: black,
+  $color-2: white,
+  $color-3: gray,
+  $shadowColor: 0 0 10px rgba(0, 0, 0, 0.5)) {
+  /* variables */
 
-.b-n-w {
+  .unselected {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    box-shadow: none;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    color: $color-1;
+  }
+
+  button, input, textarea, select, option {
+    color: $color-1;
+    background-color: transparent;
+  }
+
+  option{
+    background-color: $color-2;
+  }
+
   a {
     color: gray;
   }
@@ -111,6 +135,8 @@ padding: 10px;
   body {
     padding: 5px 10px 0;
     height: 100%;
+    background-color: $mainColor;
+    color: $color-1;
   }
 
   #footer {
@@ -135,7 +161,7 @@ padding: 10px;
   }
 
   #footer hr {
-    background-color: black;
+    background-color: $color-1;
     border: none;
     height: 1px;
   }
@@ -225,7 +251,7 @@ padding: 10px;
   #controlpanel {
     display: flex;
     flex-wrap: wrap;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     width: 254px;
     border-radius: 10px;
     padding: 5px;
@@ -297,7 +323,7 @@ padding: 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     border-radius: 10px;
     padding: 5px;
     width: 60px;
@@ -326,14 +352,14 @@ padding: 10px;
     border-radius: 5px;
     margin: 0 0 10px 0;
     outline: none;
-    border: 1px solid black;
+    border: 1px solid $color-1;
   }
 
   .dialogButtons {
     height: 40px;
     box-shadow: none;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     margin: 0 5px 10px 5px;
     width: 95%;
     background-color: transparent;
@@ -353,7 +379,7 @@ padding: 10px;
     border-radius: 5px;
     margin: 0 0 10px 0;
     box-shadow: none;
-    border: 1px solid black;
+    border: 1px solid $color-1;
     padding: 3px;
     outline: none;
   }
@@ -407,7 +433,7 @@ padding: 10px;
     height: 25px;
     border-radius: 5px;
     box-shadow: none;
-    border: 1px solid black;
+    border: 1px solid $color-1;
     padding: 3px;
     outline: none;
   }
@@ -446,7 +472,7 @@ padding: 10px;
     -ms-user-select: none;
     cursor: default;
     flex-direction: column;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     width: 250px;
     border-radius: 10px;
     margin: 10px 0 0 0;
@@ -497,13 +523,18 @@ padding: 10px;
   }
   .set-timer-panel textarea {
     width: 95%;
-    border: 1px solid black;
+    border: 1px solid $color-1;
     border-radius: 5px;
     outline: none;
     resize: none;
   }
+
+  textarea::-webkit-input-placeholder {
+    color: $color-3;
+  }
+
   .set-timer-panel input {
-    border: 1px solid black;
+    border: 1px solid $color-1;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
@@ -514,14 +545,14 @@ padding: 10px;
   }
   .set-timer-panel select {
     width: 50%;
-    border: 1px solid black;
+    border: 1px solid $color-1;
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
   }
   .set-timer-panel form select {
     width: 32%;
-    border: 1px solid black;
+    border: 1px solid $color-1;
     margin: 5px 0px 3px 2px;
     border-radius: 5px;
     outline: none;
@@ -529,7 +560,7 @@ padding: 10px;
   .set-timer-panel form button {
     box-shadow: none;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     margin-top: 5px;
     height: 25px;
     background-color: transparent;
@@ -577,7 +608,7 @@ padding: 10px;
     font-family: 'icon';
     font-size: 40px;
     box-shadow: none;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     background: none;
     outline: none;
     width: 100%;
@@ -713,6 +744,7 @@ padding: 10px;
   .checkbox:checked + .checkbox-label:before {
     left: 30px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px red;
+    background-color: $color-2;
   }
 
   .mixer-field {
@@ -725,648 +757,13 @@ padding: 10px;
 
 }
 
-.b-n-r{
-  body, a, button, input, select, div, span, label,
-  textarea, .checkbox-label:before{
-  background-color: black;
+.b-n-w {
+  @include common-styles();
 }
 
-  .checkbox-label:before{
-    background-color: black!important;
-  }
-
-  body{
-    padding: 10px 10px 0;
-    height: 100%;
-  }
-
-  a{
-    color:darkred;
-  }
-
-  #root {
-    padding: 5px 10px 0;
-    height: 100%;
-    background-color: black;
-  }
-
-  #footer {
-    height: 30px;
-    text-align: center;
-  }
-
-  ::-webkit-input-placeholder {color:red}
-  ::-moz-placeholder          {color:red}
-  :-moz-placeholder           {color:red}
-  :-ms-input-placeholder      {color:red}
-
-  #footer p {
-    right: 10px;
-    position: absolute;
-    text-align: right;
-    display: inline-block;
-    font-family: 'ProximaNova-Bold';
-    font-size: 8pt;
-  }
-
-  #footer button {
-    font-family: 'ProximaNova-Bold';
-    border: none;
-    background: transparent;
-    outline: none;
-  }
-
-  #footer hr {
-    background-color: black;
-    border: none;
-    height: 1px;
-  }
-
-  @media screen and (max-width: 900px) {
-
-    #wrapper {
-      font-family: 'ProximaNova-Bold';
-      font-size: 10pt;
-      min-height: calc(100vh - 70px);
-      background: none;
-    }
-
-  }
-
-  .tooltip {
-    position: fixed;
-    padding: 3px 8px;
-    border-radius: 4px;
-    border: 1px solid black;
-    text-align: center;
-    font: 12px/1.3 'ProximaNova-Bold', sans-serif;
-    color: #333;
-    background: #fff;
-  }
-
-  /*//////////////////main page//////////////*/
-
-  #time {
-    display: inline-block;
-    font-size: 50px;
-    margin: auto 5px;
-    font-family: 'ProximaNova-Bold';
-  }
-
-  #clock {
-    display: flex;
-    margin: 3px 0 3px 0;
-    justify-content: flex-start;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    cursor: default;
-  }
-
-  h1 {
-    margin: 5px auto;
-    text-align: center;
-  }
-
-  #main {
-    width: 100%;
-  }
-
-  .row1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .row2 {
-    display: grid;
-    grid-template-columns: auto 80px;
-  }
-
-  @media screen and (max-width: 400px) {
-    .logout {
-      flex-basis: 100%;
-      text-align: center;
-      order: -1;
-    }
-
-    #clock {
-      font-size: 20px;
-    }
-
-    #time {
-      font-size: 20px;
-    }
-
-    #timeicon {
-      font-size: 20px;
-    }
-
-  }
-
-  #controlpanel {
-    display: flex;
-    flex-wrap: wrap;
-    border: 2px solid red;
-    width: 254px;
-    border-radius: 10px;
-    padding: 5px;
-    justify-content: space-around;
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 1;
-  }
-
-  #loginForm p {
-    margin: 5px 0;
-  }
-
-  .table {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    grid-gap: 1rem;
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    align-items: start;
-  }
-  @media screen and (max-width: 1000px) {
-    .table {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      grid-gap: 1rem;
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 1;
-    }
-  }
-  @media screen and (max-width: 800px) {
-    .table {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      grid-gap: 1rem;
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 1;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    .table {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(1, 1fr);
-      grid-gap: 1rem;
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 1;
-    }
-  }
-
-  .rightpanel {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .panel {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    border: 2px solid red;
-    border-radius: 10px;
-    padding: 5px;
-    width: 60px;
-    height: 180px;
-    justify-content: space-around;
-    margin: 10px 0 0 0;
-  }
-
-  /*//////////////////////dialog window//////////////////////*/
-  #dialogWin {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 200px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: 'ProximaNova-Bold';
-  }
-
-  #dialogWin select {
-    width: 95%;
-    height: 40px;
-    border-radius: 5px;
-    margin: 0 0 10px 0;
-    outline: none;
-    border: 1px solid black;
-  }
-
-  .dialogButtons {
-    height: 40px;
-    box-shadow: none;
-    border-radius: 5px;
-    border: 2px solid black;
-    margin: 0 5px 10px 5px;
-    width: 95%;
-    background-color: transparent;
-    font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
-    outline: none;
-  }
-
-  #load, #clearLoad {
-    font-size: 8pt;
-    letter-spacing: 0;
-  }
-
-  #dialogWin input {
-    width: 90%;
-    height: 25px;
-    border-radius: 5px;
-    margin: 0 0 10px 0;
-    box-shadow: none;
-    border: 1px solid black;
-    padding: 3px;
-    outline: none;
-  }
-
-  #close, #closeContentWin {
-    background-color: white;
-    align-self: flex-end;
-    border-radius: 5px;
-    font-size: 16pt;
-    box-shadow: none;
-    border: none;
-    outline: none;
-    width: 25px;
-  }
-
-  /*////////////////////////////Content window//////////////////////////////*/
-  #closeContentWin {
-
-    position: absolute;
-
-  }
-  #ContentWinHead {
-    height: 30px;
-    text-align: center;
-    align-self: center;
-    line-height: 30px;
-    font-family: 'ProximaNova-Bold';
-  }
-  #winContent {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    position: absolute;
-    width: 400px;
-    min-height: 250px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    top: 5%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    font-family: 'ProximaNova-Regular';
-    font-size: 10pt;
-  }
-  #content {
-    padding: 0 8px 15px 8px;
-    align-content: flex-start;
-  }
-  #winContent select {
-    height: 25px;
-    border-radius: 5px;
-    box-shadow: none;
-    border: 1px solid black;
-    padding: 3px;
-    outline: none;
-  }
-  #winContent input[type="text"] {
-    height: 15px;
-    border-radius: 5px;
-    box-shadow: none;
-    border: 1px solid black;
-    padding: 3px;
-    outline: none;
-    margin: 3px 0;
-  }
-  dt {
-    margin: 5px 0;
-  }
-  #buttonSubmit, #volumeCalc {
-    height: 40px;
-    box-shadow: none;
-    border-radius: 5px;
-    border: 2px solid black;
-    margin: 0 5px 10px 5px;
-    width: 95%;
-    background-color: transparent;
-    font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
-    outline: none;
-  }
-  #convertResult {
-    font-family: 'ProximaNova-Bold';
-  }
-
-  /*//////////////////////////timers/////////////////////////////////////*/
-  .timers {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    cursor: default;
-    flex-direction: column;
-    border: 2px solid red;
-    width: 250px;
-    border-radius: 10px;
-    margin: 10px 0 0 0;
-  }
-
-  *{
-    color:red
-  }
-
-  .timers h4 {
-    text-align: center;
-    height: 20px;
-    padding-top: 5px;
-    font-size: 12pt;
-  }
-  .finished {
-    box-shadow: 0 0 20px rgb(255, 0, 0);
-    border-color: red;
-  }
-  .delete {
-    float: right;
-    background-color: white;
-    align-self: flex-end;
-    background-color: transparent;
-    right: 0;
-    border-radius: 5px;
-    font-size: 16pt;
-    box-shadow: none;
-    border: none;
-    outline: none;
-    width: 25px;
-    cursor: pointer;
-  }
-  .timer-panel {
-    text-align: center;
-  }
-  .timer-panel p {
-    text-align: left;
-    width: 100%;
-    word-break: break-all;
-  }
-  .timer-panel span {
-    font-size: 340%;
-    font-family: 'ProximaNova-Regular';
-    text-align: left;
-    margin: 0;
-    display: block;
-    width: 100%;
-    display: inline-block;
-  }
-  .set-timer-panel div {
-    text-align: center;
-  }
-  .set-timer-panel textarea {
-    width: 95%;
-    border: 1px solid red;
-    border-radius: 5px;
-    outline: none;
-    resize: none;
-  }
-  .set-timer-panel input {
-    border: 1px solid red;
-    margin: 3px 2px;
-    border-radius: 5px;
-    outline: none;
-
-  }
-  .set-timer-panel input[name="process"] {
-    width: 50%;
-  }
-  .set-timer-panel select {
-    width: 50%;
-    border: 1px solid red;
-    margin: 3px 2px;
-    border-radius: 5px;
-    outline: none;
-  }
-  .set-timer-panel form select {
-    width: 32%;
-    border: 1px solid red;
-    margin: 5px 0px 3px 2px;
-    border-radius: 5px;
-    outline: none;
-  }
-  .set-timer-panel form button {
-    box-shadow: none;
-    border-radius: 5px;
-    border: 2px solid red;
-    margin-top: 5px;
-    height: 25px;
-    background-color: transparent;
-    font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
-    width: 100%;
-    outline: none;
-    cursor: pointer;
-  }
-  .set-timer-panel form div p {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 3px;
-    justify-content: space-around;
-    width: 100%;
-    align-self: center;
-  }
-  .set-timer-panel form p {
-    margin-top: 3px;
-
-  }
-  .set-timer-panel form span {
-    font-size: 8pt;
-  }
-
-  .icon {
-    font-family: 'icon';
-    font-size: 70px;
-    @extend .unselected
-  }
-
-  .icon2 {
-    font-family: 'icon';
-    font-size: 50px;
-    @extend .unselected
-  }
-
-  .icon3 {
-    font-family: 'icon';
-    font-size: 40px;
-    @extend .unselected
-  }
-
-  .film-button {
-    font-family: 'icon';
-    font-size: 40px;
-    box-shadow: none;
-    border: 2px solid red;
-    background: none;
-    outline: none;
-    width: 100%;
-    margin: 5px 0;
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  .timer-panel {
-    padding: 0 10px;
-  }
-
-  .set-timer-panel {
-    padding: 0 10px;
-  }
-
-  .settimerpanel_hidden {
-    display: none;
-  }
-
-  .timer-inputs {
-    display: block;
-  }
-
-  .stork {
-    box-shadow: none;
-    border-radius: 5px;
-    border: none;
-    background-color: transparent;
-    width: 100%;
-    outline: none;
-    font-size: 15px;
-    transition: font-size 0.2s ease-out 0.2s;
-    height: 30px;
-    cursor: pointer;
-  }
-
-  .stork:hover {
-    font-size: 22px;
-    transition: font-size 0.2s ease-out 0.2s;
-  }
-
-  /*////////////////////////////about//////////////////////////////*/
-
-  .about svg {
-    width: 150px;
-    margin: 40px auto 40px;
-  }
-  .about {
-    text-align: center;
-    padding-bottom: 30px;
-  }
-  /*///////////////////////////////////////////////////////////*/
-  .checkbox-label {
-    display: block;
-    background: transparent;
-    height: 30px;
-    width: 60px;
-    border-radius: 50px;
-    margin: 5px auto;
-    position: relative;
-    box-shadow: 0 0 0 2px black;
-    font-family: 'icon';
-  }
-
-  .checkbox-label .on {
-    display: block;
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    opacity: 1;
-    line-height: 30px;
-    opacity: 0;
-    color: red;
-    font-family: 'icon';
-    font-size: 40px;
-    @extend .unselected;
-    cursor: default;
-  }
-
-  .checkbox-label .off {
-    display: block;
-    position: absolute;
-    z-index: 0;
-    right: 70px;
-    text-align: right;
-    opacity: 1;
-    line-height: 30px;
-    opacity: 1;
-    color: black;
-    font-size: 40px;
-    @extend .unselected;
-    cursor: default;
-  }
-
-  .checkbox-label:before {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 30px;
-    height: 30px;
-    width: 30px;
-    background: white;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px black;
-    font-family: 'icon';
-  }
-
-  .checkbox {
-    position: absolute;
-    left: -5000px
-  }
-
-  .checkbox:checked + .checkbox-label {
-    background: red;
-    box-shadow: 0 0 0 2px red;
-    font-family: 'icon';
-  }
-
-  .checkbox:checked + .checkbox-label .on {
-    left: 70px;
-    opacity: 1;
-  }
-
-  .checkbox:checked + .checkbox-label .off {
-    right: 0px;
-    opacity: 0;
-  }
-
-  .checkbox:checked + .checkbox-label:before {
-    left: 30px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px red;
-  }
-
-  .mixer-field {
-    width: 30px
-  }
-  .mixer-labels {
-    font-weight: 700;
-    margin-top: 20px;
-  }
+.b-n-r {
+  $mainColor: black;
+  $secondColor: red;
+  $shadowColor: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px red;
+  @include common-styles($mainColor, $secondColor, $mainColor, $secondColor, $shadowColor);
 }
