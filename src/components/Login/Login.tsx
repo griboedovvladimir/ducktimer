@@ -21,6 +21,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 export interface ILoginProps extends RouteComponentProps {
     authorization: { token: string },
     authorize: ( payload: { authorize: string } ) => {};
+    switchTheme: (clssName: string)=>{}
 }
 export interface ILoginState {
      showMessage: boolean
@@ -39,6 +40,10 @@ class Login extends Component <ILoginProps, ILoginState> {
         if ( storageService.getTokenFromLocalStorage() || storageService.getTokenFromSessionStorage() ) {
             this.props.history.push( '/main' );
         }
+    }
+
+    public componentDidMount() :void {
+        this.props.switchTheme('b-n-w')
     }
 
     public onChangeSignIn = ( event: React.ChangeEvent<HTMLInputElement> ): void => {

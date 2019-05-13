@@ -145,8 +145,8 @@ class Timer extends Component <any, any> {
         let arr = time.split( ':' );
         let hour = arr[ 0 ], min = arr[ 1 ], sec = arr[ 2 ];
         let settime = parseInt( hour ) * 3600 + parseInt( min ) * 60 + parseInt( sec );
-        let countdown = new Date(),
-            responseTime = new Date( Date.now() + ( 1000 * settime ) );
+        let countdown = new Date();
+        let responseTime = new Date( Date.now() + ( 1000 * settime ) );
 
         let goTimer = () => {
             if ( this.state.currentTimerValue !== OTHER_CONSTANTS.START_TIME ) {
@@ -175,7 +175,7 @@ class Timer extends Component <any, any> {
 
         return (
             <div className={timersClassList}>
-                <button onClick={this.onRemoveTimer} className="delete">×</button>
+                <button onClick={this.onRemoveTimer} className="delete trans-color-btn">×</button>
                 <h4>{process}</h4>
                 <div className='timer-panel'>
                     <span>{this.state.currentTimerValue || OTHER_CONSTANTS.START_TIME}</span>
@@ -208,12 +208,13 @@ class Timer extends Component <any, any> {
                     <textarea onChange={this.onChangeTimerParams} name="note" className="timer-inputs"
                               placeholder="Note"/>
                     <div>
-                        <button onClick={this.getFilmOptions} title="Load film preset time" className="film-button">
+                        <button onClick={this.getFilmOptions} title="Load film preset time"
+                                className="film-button trans-color-btn">
                         </button>
                     </div>
                     {this.state.formIsActivated}
                 </div>}
-                <button onClick={this.onTogglePanel} className="stork">
+                <button onClick={this.onTogglePanel} className="stork trans-color-btn">
                     {this.state.panelIsOpen ? '▲' : '▼'}
                 </button>
             </div>

@@ -77,7 +77,7 @@ class FilmPresetForm extends Component <IFilmPresetFormProps, IFilmPresetFormSta
                 <select onChange={this.onChangeFormFields} id="dev-select" name="dev-select">
                     {developers}
                 </select>
-                <button onClick={this.getSecondFilmFormOptions} type="button">Select</button>
+                <button className="trans-color-btn" onClick={this.getSecondFilmFormOptions} type="button">Select</button>
                 {this.state.secondFilmPresetForm}
             </form>
         )

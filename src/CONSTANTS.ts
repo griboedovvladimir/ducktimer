@@ -14,7 +14,8 @@ export enum API_CONSTANTS {
 }
 
 export enum STORAGE_CONSTANTS {
-    SET_TOKEN = 'SET_TOKEN'
+    SET_TOKEN = 'SET_TOKEN',
+    SET_THEME = 'SET_THEME'
 }
 
 export enum OTHER_CONSTANTS {

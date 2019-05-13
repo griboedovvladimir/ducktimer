@@ -6,7 +6,9 @@ export const storageService = {
     getTokenFromLocalStorage,
     getTokenFromSessionStorage,
     removeTokenFromLocalStorage,
-    removeTokenFromSessionStorage
+    removeTokenFromSessionStorage,
+    setThemeToSessionStorage,
+    getThemeFromLocalStorage,
 };
 
 function setTokenToLocalStorage(token: string) {
@@ -31,4 +33,12 @@ function removeTokenFromLocalStorage() {
 
 function removeTokenFromSessionStorage() {
     sessionStorage.removeItem(STORAGE_CONSTANTS.SET_TOKEN);
+}
+
+function setThemeToSessionStorage(theme: string) {
+    sessionStorage.setItem(STORAGE_CONSTANTS.SET_THEME, theme);
+}
+
+function getThemeFromLocalStorage(): string | null {
+    return sessionStorage.getItem(STORAGE_CONSTANTS.SET_THEME) ;
 }

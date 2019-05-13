@@ -84,7 +84,7 @@ class SecondFilmPresetForm extends Component <ISecondFilmPresetFormProps, ISecon
                 <select name="iso" id="iso">{iso}</select>
                 <select name="dilution" id="dilution">{dilution}</select>
                 <select name="temp" id="temp">{temp}</select>
-                <button onClick={this.setTime} type="button">Set time</button>
+                <button className="trans-color-btn" onClick={this.setTime} type="button">Set time</button>
                 {this.state.stateMessage}
             </div>
         )

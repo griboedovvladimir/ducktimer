@@ -32,6 +32,11 @@ class Registration extends Component <IRegistrationProps, IRegistrationState> {
         }
     }
 
+    public componentDidMount() :void {
+        this.props.switchTheme('b-n-w')
+    }
+
+
     public onChangeRegister = ( event: React.ChangeEvent<HTMLInputElement> ): void => {
         switch ( event.target.id ) {
             case 'name':
