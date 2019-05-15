@@ -8,6 +8,7 @@ import * as actions from '../../redux/actons';
 import { storageService } from '../../shared/services/storage.service';
 import { IStoreInterface } from '../../interfaces/store.interface'
 import { RouteComponentProps } from 'react-router';
+import Popup from '../Popup/Popup';
 
 class Main extends Component <IStoreInterface & RouteComponentProps> {
     public date = new Date();
@@ -40,7 +41,7 @@ class Main extends Component <IStoreInterface & RouteComponentProps> {
         this.setState( {...this.state, clock: d.toLocaleTimeString( 'en-GB' )} )
     }
 
-    public iniTimers(){
+    public initTimers(){
        return this.props.timer.timers.map( (timer: { time: string; id:string}): React.ReactNode =>{
            return <Timer key = {timer.id} id = {timer.id} time={timer.time} />
        })
@@ -49,6 +50,7 @@ class Main extends Component <IStoreInterface & RouteComponentProps> {
     render() {
         return (
             <div className={this.props.currentTheme.theme}>
+                {/*<div className="effect-background">*/}
                 <ThemeSwitcher/>
                 <div className="row1">
                     <div id="clock">
@@ -63,9 +65,11 @@ class Main extends Component <IStoreInterface & RouteComponentProps> {
                 <div className= "row2">
                 <RightMenu/>
                 <div className="table">
-                {this.iniTimers()}
+                {this.initTimers()}
                 </div>
                 </div>
+                {/*</div>*/}
+                {/*<Popup/>*/}
             </div>
         )
     }

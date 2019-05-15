@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum ROUTE_CONSTANTS {
     LOGIN_PAGE = '/login',
     REGISTRATION_PAGE = '/registration',
@@ -21,3 +23,14 @@ export enum STORAGE_CONSTANTS {
 export enum OTHER_CONSTANTS {
     START_TIME ='00:00:00'
 }
+
+export const SELECT_PROCESS_OPTIONS = [
+    'film developer',
+    'developer',
+    'fix bath',
+    'stop bath',
+    'washing',
+    'drying',
+    'stabilised',
+    'exposure',
+];

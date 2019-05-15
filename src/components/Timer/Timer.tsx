@@ -5,6 +5,7 @@ import FilmPresetForm from '../FilmPresetForm';
 import { API_CONSTANTS } from '../../CONSTANTS';
 import { restService } from '../../shared/services/rest.service';
 import { OTHER_CONSTANTS } from '../../CONSTANTS';
+import { SELECT_PROCESS_OPTIONS } from '../../CONSTANTS';
 
 
 class Timer extends Component <any, any> {
@@ -57,7 +58,7 @@ class Timer extends Component <any, any> {
         if ( this.checkTimerValue( event.target.value ) ) {
             switch ( event.target.name ) {
                 case 'hours':
-                    this.timerValue.hours = event.target.value;
+                    this.timerValue.hours = Number( event.target.value ) > 23 ? '23' : event.target.value;
                     break;
                 case 'min':
                     this.timerValue.min = event.target.value;
@@ -129,6 +130,10 @@ class Timer extends Component <any, any> {
         }
     };
 
+    public getProcessOptions(): React.ReactNode[] {
+        return SELECT_PROCESS_OPTIONS.map( ( process: string, i: number ) => <option key={i}>{process}</option> );
+    }
+
     private filmFormActivate( value: string | React.ReactNode | null ) {
         this.setState( {...this.state, formIsActivated: value} );
     }
@@ -186,14 +191,7 @@ class Timer extends Component <any, any> {
                 </div>
                 {this.state.panelIsOpen && <div className="set-timer-panel" defaultValue=" ">Select process
                     <select onChange={this.onSelectProcess} name="selectProcess">
-                        <option>film developer</option>
-                        <option>developer</option>
-                        <option>fix bath</option>
-                        <option>stop bath</option>
-                        <option>washing</option>
-                        <option>drying</option>
-                        <option>stabilised</option>
-                        <option>exposure</option>
+                        {this.getProcessOptions()}
                     </select>
                     <br/>Other process<input onChange={this.onChangeTimerParams} type="text" name="process" size={4}
                                              defaultValue={this.state.otherProcess}/>
