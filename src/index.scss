@@ -2,19 +2,87 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,8 +92,17 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -33,16 +110,20 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -67,11 +148,12 @@ table {
 }
 
 @font-face {
-  font-family: "ProximaNova-Bold";
-  src: url("shared/fonts/ProximaNova-Bold.eot");
-  src: url("shared/fonts/ProximaNova-Bold.eot?#iefix") format("embedded-opentype"),
-  url("shared/fonts/ProximaNova-Bold.woff") format("woff"),
-  url("shared/fonts/ProximaNova-Bold.ttf") format("truetype");
+  font-family: 'ProximaNova-Bold';
+  src: url('shared/fonts/ProximaNova-Bold.eot');
+  src: url('shared/fonts/ProximaNova-Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('shared/fonts/ProximaNova-Bold.woff') format('woff'),
+    url('shared/fonts/ProximaNova-Bold.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
@@ -79,16 +161,15 @@ table {
 body {
   margin: 0;
   padding: 0;
-  font-family: "ProximaNova-Bold", 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: 'ProximaNova-Bold', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+    monospace;
 }
 
 #root {
@@ -100,7 +181,8 @@ code {
   $color-1: black,
   $color-2: white,
   $color-3: gray,
-  $shadowColor: 0 0 10px rgba(0, 0, 0, 0.5)) {
+  $shadowColor: 0 0 10px rgba(0, 0, 0, 0.5)
+) {
   /* variables */
 
   .unselected {
@@ -115,12 +197,16 @@ code {
     color: $color-1;
   }
 
-  input, textarea, select, option, .trans-color-btn {
+  input,
+  textarea,
+  select,
+  option,
+  .trans-color-btn {
     color: $color-1;
     background-color: transparent;
   }
 
-  option{
+  option {
     background-color: $color-2;
   }
 
@@ -167,14 +253,12 @@ code {
   }
 
   @media screen and (max-width: 900px) {
-
     #wrapper {
       font-family: 'ProximaNova-Bold';
       font-size: 10pt;
       min-height: calc(100vh - 70px);
       background: none;
     }
-
   }
 
   .tooltip {
@@ -245,7 +329,6 @@ code {
     #timeicon {
       font-size: 20px;
     }
-
   }
 
   #controlpanel {
@@ -364,11 +447,12 @@ code {
     width: 95%;
     background-color: transparent;
     font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     outline: none;
   }
 
-  #load, #clearLoad {
+  #load,
+  #clearLoad {
     font-size: 8pt;
     letter-spacing: 0;
   }
@@ -384,7 +468,8 @@ code {
     outline: none;
   }
 
-  #close, #closeContentWin {
+  #close,
+  #closeContentWin {
     background-color: white;
     align-self: flex-end;
     border-radius: 5px;
@@ -397,9 +482,7 @@ code {
 
   /*////////////////////////////Content window//////////////////////////////*/
   #closeContentWin {
-
     position: absolute;
-
   }
   #ContentWinHead {
     height: 30px;
@@ -409,7 +492,7 @@ code {
     font-family: 'ProximaNova-Bold';
   }
 
-  .popup-container{
+  .popup-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -442,7 +525,7 @@ code {
     padding: 3px;
     outline: none;
   }
-  #winContent input[type="text"] {
+  #winContent input[type='text'] {
     height: 15px;
     border-radius: 5px;
     box-shadow: none;
@@ -454,7 +537,8 @@ code {
   dt {
     margin: 5px 0;
   }
-  #buttonSubmit, #volumeCalc {
+  #buttonSubmit,
+  #volumeCalc {
     height: 40px;
     box-shadow: none;
     border-radius: 5px;
@@ -463,7 +547,7 @@ code {
     width: 95%;
     background-color: transparent;
     font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     outline: none;
   }
   #convertResult {
@@ -481,7 +565,6 @@ code {
     width: 250px;
     border-radius: 10px;
     margin: 10px 0 0 0;
-
   }
   .timers h4 {
     text-align: center;
@@ -543,9 +626,8 @@ code {
     margin: 3px 2px;
     border-radius: 5px;
     outline: none;
-
   }
-  .set-timer-panel input[name="process"] {
+  .set-timer-panel input[name='process'] {
     width: 50%;
   }
   .set-timer-panel select {
@@ -570,7 +652,7 @@ code {
     height: 25px;
     background-color: transparent;
     font-family: 'ProximaNova-Bold';
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     width: 100%;
     outline: none;
     cursor: pointer;
@@ -585,7 +667,6 @@ code {
   }
   .set-timer-panel form p {
     margin-top: 3px;
-
   }
   .set-timer-panel form span {
     font-size: 8pt;
@@ -594,19 +675,19 @@ code {
   .icon {
     font-family: 'icon';
     font-size: 70px;
-    @extend .unselected
+    @extend .unselected;
   }
 
   .icon2 {
     font-family: 'icon';
     font-size: 50px;
-    @extend .unselected
+    @extend .unselected;
   }
 
   .icon3 {
     font-family: 'icon';
     font-size: 40px;
-    @extend .unselected
+    @extend .unselected;
   }
 
   .film-button {
@@ -727,7 +808,7 @@ code {
 
   .checkbox {
     position: absolute;
-    left: -5000px
+    left: -5000px;
   }
 
   .checkbox:checked + .checkbox-label {
@@ -753,14 +834,14 @@ code {
   }
 
   .mixer-field {
-    width: 30px
+    width: 30px;
   }
   .mixer-labels {
     font-weight: 700;
     margin-top: 20px;
   }
   /*////////////////////////////Popup/////////////////////////////////////////*/
-  .effect-background{
+  .effect-background {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -780,5 +861,11 @@ code {
   $mainColor: black;
   $secondColor: red;
   $shadowColor: 0 0 10px rgba(255, 0, 0, 0.5);
-  @include common-styles($mainColor, $secondColor, $mainColor, $secondColor, $shadowColor);
+  @include common-styles(
+    $mainColor,
+    $secondColor,
+    $mainColor,
+    $secondColor,
+    $shadowColor
+  );
 }
