@@ -25,6 +25,7 @@ class ThemeSwitcher extends Component<IThemeSwitcherProps, any> {
   };
 
   public componentDidMount(): void {
+    this.setDefaultTheme();
     this.props.switchTheme(
       storageService.getThemeFromLocalStorage() || 'b-n-w'
     );
@@ -50,6 +51,12 @@ class ThemeSwitcher extends Component<IThemeSwitcherProps, any> {
         </label>
       </div>
     );
+  }
+
+  private setDefaultTheme(): void {
+    if(!storageService.getThemeFromLocalStorage()) {
+      storageService.setThemeToSessionStorage('b-n-w');
+    }
   }
 }
 
