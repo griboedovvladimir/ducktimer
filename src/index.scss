@@ -150,30 +150,40 @@ table {
 @font-face {
   font-family: 'ProximaNova-Bold';
   src: url('shared/fonts/ProximaNova-Bold.eot');
-  src: url('shared/fonts/ProximaNova-Bold.eot?#iefix')
-      format('embedded-opentype'),
-    url('shared/fonts/ProximaNova-Bold.woff') format('woff'),
-    url('shared/fonts/ProximaNova-Bold.ttf') format('truetype');
+  src: url('shared/fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+  url('shared/fonts/ProximaNova-Bold.woff') format('woff'),
+  url('shared/fonts/ProximaNova-Bold.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
+
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'ProximaNova-Bold', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
+
 
 #root {
   padding: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+button:hover, .icon2:hover {
+  opacity: .7;
 }
 
 @mixin common-styles(
@@ -204,6 +214,10 @@ code {
   .trans-color-btn {
     color: $color-1;
     background-color: transparent;
+    border: 1px solid $color-1;
+    margin: 3px 2px;
+    border-radius: 5px;
+    outline: none;
   }
 
   option {
@@ -493,6 +507,11 @@ code {
   }
 
   .popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -513,10 +532,12 @@ code {
     z-index: 1005;
     background-color: $color-2;
   }
+
   .content {
     padding: 0 8px 15px 8px;
     align-content: flex-start;
   }
+
   #winContent select {
     height: 25px;
     border-radius: 5px;
@@ -525,6 +546,7 @@ code {
     padding: 3px;
     outline: none;
   }
+
   #winContent input[type='text'] {
     height: 15px;
     border-radius: 5px;
@@ -534,15 +556,17 @@ code {
     outline: none;
     margin: 3px 0;
   }
+
   dt {
     margin: 5px 0;
   }
-  #buttonSubmit,
-  #volumeCalc {
+
+  .converter__submit,
+  .mixer__calc-button {
     height: 40px;
     box-shadow: none;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid $color-1;
     margin: 0 5px 10px 5px;
     width: 95%;
     background-color: transparent;
@@ -550,6 +574,15 @@ code {
     letter-spacing: 0.1em;
     outline: none;
   }
+
+  .film-button:hover,
+  .converter__submit:hover,
+  .mixer__calc-button:hover
+  {
+    box-shadow: 0 0 10px $color-3;
+    opacity: 1;
+  }
+
   #convertResult {
     font-family: 'ProximaNova-Bold';
   }
@@ -572,10 +605,12 @@ code {
     padding-top: 5px;
     font-size: 12pt;
   }
+
   .finished {
     box-shadow: 0 0 20px rgb(255, 0, 0);
     border-color: red;
   }
+
   .delete {
     float: right;
     align-self: flex-end;
@@ -736,6 +771,7 @@ code {
   .stork:hover {
     font-size: 22px;
     transition: font-size 0.2s ease-out 0.2s;
+    opacity: 1;
   }
 
   /*////////////////////////////about//////////////////////////////*/
@@ -766,7 +802,6 @@ code {
     position: absolute;
     z-index: 0;
     left: 0;
-    opacity: 1;
     line-height: 30px;
     opacity: 0;
     color: red;
@@ -784,7 +819,6 @@ code {
     text-align: right;
     opacity: 1;
     line-height: 30px;
-    opacity: 1;
     color: black;
     font-size: 40px;
     @extend .unselected;
@@ -836,9 +870,19 @@ code {
   .mixer-field {
     width: 30px;
   }
+
+  .field__calck {
+    width: 40px;
+  }
+
   .mixer-labels {
     font-weight: 700;
     margin-top: 20px;
+  }
+
+  .mixer__calc {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
   /*////////////////////////////Popup/////////////////////////////////////////*/
   .effect-background {
@@ -848,8 +892,41 @@ code {
     top: 0;
     left: 0;
     z-index: 1000;
-    filter: blur(4px);
+    backdrop-filter: blur(4px);
     pointer-events: none;
+  }
+
+  .submit {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .converter__header {
+    margin: 5px 0;
+    text-align: center
+  }
+
+  .converter__svg {
+    margin: 10px 0 0 0;
+    fill: $color-1;
+  }
+
+  .popup__close {
+    background-color: $color-2;
+    color: $color-1;
+    align-self: flex-end;
+    border-radius: 5px;
+    font-size: 16pt;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    width: 25px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .7;
+    }
   }
 }
 
@@ -862,10 +939,10 @@ code {
   $secondColor: red;
   $shadowColor: 0 0 10px rgba(255, 0, 0, 0.5);
   @include common-styles(
-    $mainColor,
-    $secondColor,
-    $mainColor,
-    $secondColor,
-    $shadowColor
+                  $mainColor,
+                  $secondColor,
+                  $mainColor,
+                  $secondColor,
+                  $shadowColor
   );
 }

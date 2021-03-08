@@ -8,7 +8,7 @@ import * as actions from '../../redux/actons';
 import { storageService } from '../../shared/services/storage.service';
 import { IStoreInterface } from '../../interfaces/store.interface';
 import { RouteComponentProps } from 'react-router';
-import Popup from '../Popup/Popup';
+import Popup from '../Popup';
 
 class Main extends Component<IStoreInterface & RouteComponentProps> {
     public date = new Date();
@@ -47,16 +47,16 @@ class Main extends Component<IStoreInterface & RouteComponentProps> {
         this.setState( {
             ...this.state,
             clock: this.state.clock12
-                ? d.toLocaleString( 'en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric',
-                    hour12: true
-                } ).split( ' ' )[ 0 ]
-                :
-                d.toLocaleTimeString( 'en-GB' )
-        } )
-        ;
+                ? d
+                    .toLocaleString( 'en-US', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                        hour12: true,
+                    } )
+                    .split( ' ' )[ 0 ]
+                : d.toLocaleTimeString( 'en-GB' ),
+        } );
     }
 
     public initTimers() {
@@ -69,19 +69,35 @@ class Main extends Component<IStoreInterface & RouteComponentProps> {
 
     public onChangeClockLocale = (): void => {
         this.setState( {...this.state, clock12: !this.state.clock12} );
-    }
+    };
+
+    public openRightMenuPopup = ( event: any ) => {
+        this.setState( {...this.state, popupType: event.target.id} );
+    };
+
+    public closePopup = ( event: any ): any => {
+        if ( (event.target.id === 'popupContainer' && this.state.popupType) || event.target.id === 'closePopUp' ) {
+            this.setState( {...this.state, popupType: null} );
+        }
+    };
 
     render() {
         return (
-            <div className={this.props.currentTheme.theme}>
-                {/*<div className="effect-background">*/}
+            <div className={this.props.currentTheme.theme} onClick={this.closePopup}>
+                <div
+                    className={this.state.popupType ? 'effect-background' : ''}
+                ></div>
                 <ThemeSwitcher/>
                 <div className="row1">
                     <div id="clock">
-            <span id="timeicon" className="icon2" onClick={this.onChangeClockLocale}>
-              {' '}
-                
-            </span>
+              <span
+                  id="timeicon"
+                  className="icon2"
+                  onClick={this.onChangeClockLocale}
+              >
+                {' '}
+                  
+              </span>
                         <div id="time">{this.state.clock}</div>
                     </div>
                     <div className="logout">
@@ -92,11 +108,10 @@ class Main extends Component<IStoreInterface & RouteComponentProps> {
                 </div>
                 <TopMenu/>
                 <div className="row2">
-                    <RightMenu/>
+                    <RightMenu propsFn={this.openRightMenuPopup}/>
                     <div className="table">{this.initTimers()}</div>
                 </div>
-                {/*</div>*/}
-                {/*<Popup/>*/}
+                {this.state.popupType && <Popup popupType={this.state.popupType} popClose={this.closePopup}/>}
             </div>
         );
     }

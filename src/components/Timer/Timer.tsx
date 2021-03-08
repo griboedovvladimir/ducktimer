@@ -177,8 +177,8 @@ class Timer extends Component<any, any> {
   }
 
   private timerOverHandle(): void {
-    let audio = new Audio();
-    audio.src = './static/media/duck.mp3';
+    let audio = new Audio('./static/media/duck.mp3');
+    console.log(audio);
     audio.autoplay = true;
     this.setState({ ...this.state, timerFinished: true });
   }

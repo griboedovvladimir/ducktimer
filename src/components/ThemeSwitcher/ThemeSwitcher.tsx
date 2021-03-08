@@ -54,7 +54,7 @@ class ThemeSwitcher extends Component<IThemeSwitcherProps, any> {
   }
 
   private setDefaultTheme(): void {
-    if(!storageService.getThemeFromLocalStorage()) {
+    if (!storageService.getThemeFromLocalStorage()) {
       storageService.setThemeToSessionStorage('b-n-w');
     }
   }
